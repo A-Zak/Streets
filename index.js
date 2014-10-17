@@ -20,8 +20,14 @@ app.get('/', function(req, res){
 app.get('/story/:storyId', function(req,res){
     var col = mdb.collection('stories');
     var storyId = req.params.storyId;
+    try{
+        var objectId = ObjectID.createFromHexString(storyId);
+    }catch(e){
+        res.send(500, 'Error : please provide a valid storyId');
+    }
+
     console.log('Fetch story for story ID : ' + storyId);
-    col.findOne(ObjectID.createFromHexString(storyId), function(err, doc){
+    col.findOne(objectId, function(err, doc){
         if(err){
             console.error('Error find story by storyId : %s. Error : %s.',storyId, err);
         }else{
@@ -42,6 +48,10 @@ app.get('/story', function(req,res){
 	});
 });
 
+
+app.post('/story', function(req,res){
+
+});
 
 
 app.get('/loadStories', function(req,res){
