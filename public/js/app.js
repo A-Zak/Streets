@@ -26,4 +26,4 @@ angular.module('streets', [
       redirectTo:'/'
     });
 })
-.directive('')
+//.directive('')

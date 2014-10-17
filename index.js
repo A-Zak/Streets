@@ -15,7 +15,7 @@ app.set('port', (process.env.PORT || 5555));
 app.use(bodyParser.json());
 app.use('/public', express.static(__dirname + '/public'));
 app.get('/', function(req, res){
-	res.sendfile('./public/app.html');
+	res.sendFile('./public/app.html');
 });
 
 
@@ -71,6 +71,11 @@ app.post('/story', function(req,res){
     });
 });
 
+
+app.get('/cleandb', function(req,res){
+	mdb.collection('stories').drop();
+	res.send("db clean!");
+});
 
 app.get('/loadStories', function(req,res){
 	var stories = require('./DBSamples/all.json');

@@ -43,3 +43,9 @@ create a story
 ```
 POST /story
 ```
+
+clean db from stories
+
+```
+GET /cleandb
+```
