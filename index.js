@@ -13,7 +13,7 @@ app.set('port', (process.env.PORT || 5555));
 
 app.use('/public', express.static(__dirname + '/public'));
 app.get('/', function(req, res){
-	res.sendfile('./public/app.html');
+	res.sendFile('./public/app.html');
 });
 
 app.get('/story', function(req,res){
