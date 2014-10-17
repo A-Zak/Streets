@@ -26,6 +26,11 @@ app.get('/story', function(req,res){
 	});
 });
 
+app.get('/cleandb', function(req,res){
+	mdb.collection('stories').drop();
+	res.send("db clean!");
+});
+
 app.get('/loadStories', function(req,res){
 	var stories = require('./DBSamples/all.json');
 	var col = mdb.collection('stories');
