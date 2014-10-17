@@ -1,0 +1,17 @@
+{
+  "name": "Streets",
+  "version": "0.0.1",
+  "description": "Streets of Tel-Aviv",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/A-Zak/Streets.git"
+  },
+  "license": "GPL v2.0",
+  "bugs": {
+    "url": "https://github.com/A-Zak/Streets/issues"
+  },
+  "homepage": "https://github.com/A-Zak/Streets",
+  "dependencies": {
+    "express": "^4.9.7"
+  }
+}
