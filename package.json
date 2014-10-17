@@ -9,7 +9,7 @@
   }],
 
   "scripts": {
-    "start": "node web.js"
+    "start": "node index.js"
   },
 
   "repository": {
