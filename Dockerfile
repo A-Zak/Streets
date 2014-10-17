@@ -1,4 +1,4 @@
-# DOCKER-VERSION 0.1.3
+# DOCKER-VERSION 1.3.0
 
 FROM ubuntu:14.04
 RUN apt-get update && apt-get install -y nodejs npm git git-core
