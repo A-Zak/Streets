@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var mongo = require("mongodb").MongoClient;
+var ObjectID = require('mongodb').ObjectID;
 
 var mdb = null;
 
@@ -16,6 +17,21 @@ app.get('/', function(req, res){
 	res.sendfile('./public/app.html');
 });
 
+app.get('/story/:storyId', function(req,res){
+    var col = mdb.collection('stories');
+    var storyId = req.params.storyId;
+    console.log('Fetch story for story ID : ' + storyId);
+    col.findOne(ObjectID.createFromHexString(storyId), function(err, doc){
+        if(err){
+            console.error('Error find story by storyId : %s. Error : %s.',storyId, err);
+        }else{
+            res.send(doc);
+        }
+
+    });
+});
+
+
 app.get('/story', function(req,res){
 	var col = mdb.collection('stories');
 	col.count(function(err, count){
@@ -25,6 +41,8 @@ app.get('/story', function(req,res){
 		});
 	});
 });
+
+
 
 app.get('/loadStories', function(req,res){
 	var stories = require('./DBSamples/all.json');
