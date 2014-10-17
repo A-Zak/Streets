@@ -1,17 +1,27 @@
 {
   "name": "Streets",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Streets of Tel-Aviv",
+  "author": "Streets org smile@streets.city",
+  "contributors": [{
+    "name": "Alex Zak§",
+    "email": "a@alexzak.me"
+  }],
+
+  "scripts": {
+    "start": "node web.js"
+  },
+
   "repository": {
     "type": "git",
     "url": "https://github.com/A-Zak/Streets.git"
   },
-  "license": "GPL v2.0",
   "bugs": {
     "url": "https://github.com/A-Zak/Streets/issues"
   },
   "homepage": "https://github.com/A-Zak/Streets",
   "dependencies": {
     "express": "^4.9.7"
-  }
+  },
+  "license": "GPL v2.0"
 }
