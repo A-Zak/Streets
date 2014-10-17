@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var mongo = require("mongodb").MongoClient;
 var ObjectID = require('mongodb').ObjectID;
+var bodyParser = require('body-parser');
 
 var mdb = null;
 
@@ -11,12 +12,16 @@ mongo.connect('mongodb://127.0.0.1:27017/streets', function(err, db){
 })
 
 app.set('port', (process.env.PORT || 5555));
-
+app.use(bodyParser.json());
 app.use('/public', express.static(__dirname + '/public'));
 app.get('/', function(req, res){
 	res.sendfile('./public/app.html');
 });
 
+
+/**
+ * Fetch story by ID
+ */
 app.get('/story/:storyId', function(req,res){
     var col = mdb.collection('stories');
     var storyId = req.params.storyId;
@@ -50,7 +55,20 @@ app.get('/story', function(req,res){
 
 
 app.post('/story', function(req,res){
+    console.log('Adding new story');
+    var col = mdb.collection('stories');
+    var story = req.body;
+    //TODO: add some validations!!!
+    col.insert(story, function(err, records){
+        if(err){
+            console.error('Error adding a story. Error : ', err);
+            res.send(500, 'Error adding a story.')
+        }else{
+            console.log('id', records[0]._id);
+            res.json(records[0]);
+        }
 
+    });
 });
 
 
