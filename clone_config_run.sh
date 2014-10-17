@@ -1,12 +1,13 @@
+echo "=== cleaning up old repo"
 cd /web
-
-# try to remove the repo if it already exists
 rm -rf Streets; true
 
+echo "=== cloning new build from https://github.com/A-Zak/Streets"
 git clone https://github.com/A-Zak/Streets
-
 cd Streets
 
+echo "=== installing all dependencies"
 npm install
 
+echo "=== starting up"
 nodejs .
