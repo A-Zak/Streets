@@ -1,0 +1,54 @@
+    <header id="img_header" class="intro-header" style="background-image: url(http://maps.googleapis.com/maps/api/streetview?size=400x400&location=40.720032,-73.988354&fov=90&heading=235&pitch=10)">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="site-heading">
+                        <h1>Once upon a time in Tel Aviv</h1>
+                        <hr class="small">
+                        <span class="subheading">A story about love and darkness</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+             	<div>
+             		<i class="fa fa-map-marker"></i><a href="#">{{ story.location }}</a>
+             	</div>
+             	<div>
+             		<div><i class="fa fa-align-justify"></i><a href="#">Story</a></div>
+             		{{ story.text }}
+             	</div>
+             	
+
+            </div>   
+            
+            <div class="col-md-4">
+            	<div><i class="fa fa-user"></i>{{ story.authorName }}</div>
+            	<div><i class="fa fa-calendar"></i>{{ story.storyDate }}</div>
+            	<div><input id="txt_tags" type="text" value="{{ story.tags }}" disabled=disabled data-role="tagsinput"/></div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-2">
+                             	<div>
+             		<a href="#"><span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-plus fa-stack-1x fa-inverse"></i> 
+					</span>
+					Add your story</a><br/>
+             	</div>
+                </div>
+            </div>
+        </div>
