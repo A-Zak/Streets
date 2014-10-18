@@ -24,11 +24,6 @@ if(process.env.MONGO){
 	});
 }
 
-bucket.write('test.txt','this is the content',function(err){
-	console.log("first",err);
-	bucket.createReadStream('test.txt').pipe(process.stdout, {end : false});
-})
-
 var mdb = null;
 
 var mongoIP = process.env.MONGO ? process.env.MONGO : "127.0.0.1";
