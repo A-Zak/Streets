@@ -3,7 +3,7 @@ var app = express();
 var mongo = require("mongodb").MongoClient;
 var ObjectID = require('mongodb').ObjectID;
 var bodyParser = require('body-parser');
-var stories = require('./DBSamples/all.json');
+var stories = require('./DBSamples/new_storeis.json');
 var fs = require('fs');
 var mdb = null;
 var FACEBOOK_APP_ID = '543308622468738';
@@ -243,8 +243,11 @@ app.get('/loadStories', function(req,res){
 
 
 
-// production external ip: 107.167.178.229
 var mongoIP = process.env.MONGO ? process.env.MONGO : "127.0.0.1";
+// Force prod IP
+// mongoIP = "107.167.178.229";
+
+
 
 console.log("connecting to mongo:" + 'mongodb://' + mongoIP + ':27017/streets');
 
