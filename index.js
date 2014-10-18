@@ -23,6 +23,7 @@ mongo.connect('mongodb://' + mongoIP + ':27017/streets', function(err, db){
 
 
 app.set('port', (process.env.PORT || 5555));
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json());
 app.use('/public', express.static(__dirname + '/public'));
 app.get('/', function(req, res){
