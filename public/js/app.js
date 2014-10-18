@@ -36,8 +36,6 @@ angular.module('streets', [
     this.peekPrev = function() {
         return storyCursor - 1;
     }
-
-
 })
 .service('StoryService', function(Restangular, $q) {
     var storyCache = {};
