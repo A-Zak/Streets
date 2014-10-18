@@ -11,6 +11,8 @@ function isRTL(s){
 angular.module('streets', [
     'ngRoute', 'restangular'
 ])
+
+.constant('HOMEPAGE_STORY_ID', '54421f0feb3085e9c4886f62')
 .service('StoryCursorService', function() {
     var storyCursor = 0;
 
@@ -35,9 +37,6 @@ angular.module('streets', [
     this.peekPrev = function() {
         return storyCursor - 1;
     }
-})
-.service('RandomCallToActionService', function() {
-
 })
 .service('StoryService', function(Restangular, $q) {
     var storyCache = {};
@@ -94,7 +93,9 @@ angular.module('streets', [
         }
     };
 })
-.config(function($routeProvider, RestangularProvider) {
+.config(function($routeProvider, RestangularProvider, $locationProvider) {
+  $locationProvider.html5Mode(true);
+
   $routeProvider
     .when('/', {
       controller:'StoryPageController',
@@ -118,6 +119,6 @@ angular.module('streets', [
       redirectTo:'/'
     });
 
-  RestangularProvider.setBaseUrl('/');
+  RestangularProvider.setBaseUrl('/api');
 });
 //.directive('')

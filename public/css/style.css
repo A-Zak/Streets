@@ -11,33 +11,41 @@
     text-align: center;
     font-weight: 300;
     letter-spacing: 1px;
-    margin-top: 30px;
+    margin-top: 40px;
+
 }
+
 
 div#story-text {
-    font-family:'Open Sans',sans-serif;font-size:20px;color:#404040;
+    font-family:'Open Sans',sans-serif;font-size:12pt;color:#404040;
     margin-top: 20px;
+    width: 785px;
+    text-align: justify;
+    line-height: 23pt;
+    margin-top: 53px;
 }
 
-div.site-heading h1#story-title {
-    font-family:'Open Sans',sans-serif;font-size:50px;color:#ffffff;
+div.site-heading h1#story-heading {
+    font-family:'Open Sans',sans-serif;font-size:49px;color:#ffffff;
     font-weight: 700;
     text-shadow: 2px 2px 3px #404040;
+    text-align: center;
+    margin-top: 70px;
 }
 
-div.site-heading span#story-subtitle {
-    font-family:'Roboto',sans-serif;font-size:20px;color:#cccccc;
-    font-weight: 100;
+div.site-heading #story-subtitle {
+    font-family:'Open Sans',sans-serif;font-size:15px;color:#cccccc;
+    font-weight: 300;
     letter-spacing: 1px;
-    text-shadow: 1px 1px 2px #cccccc;
+    text-align: center;
 
 }
 
 .thin {
     font-weight: 100;
     letter-spacing: 1px;
-    text-shadow: 1px 1px 2px #cccccc;
-    font-size: 20px;
+    font-size: 10px;
+
 }
 .roboto {
     font-family:'Roboto',sans-serif;color:#cccccc;
@@ -54,13 +62,48 @@ div#story-map a img {
 
 #story-create {
     text-align: center;
+    font-family:'Open Sans',sans-serif;font-size: 11pt; color:#000000;
 }
 
 #story-yours {
 
-    font-family:'Open Sans',sans-serif;font-size:40px;color:#000000;
-    font-weight: 400;
-    text-shadow: 1px 1px 2px #404040;
-    line-height: 40px;
+    font-family:'Open Sans',sans-serif;font-size:31pt;color:#000000;
+    font-weight: 300;
     text-align: center;
+}
+
+#story-button {
+    background-color: #d429ff;
+    font-family:'Open Sans',sans-serif;font-size:13pt;color:#ffffff;
+    font-weight: 300;
+    text-align: center;
+    width: 200px;
+    height: 53px;
+    border: none;
+}
+
+#story-button:hover {
+    background-color: #bf25e5;
+
+}
+
+.share-button {
+    width: 54px;
+    height: 54px;
+}
+
+#story-email {
+    margin-left: 23px;
+    height:54px;
+    width:227px;
+    padding-left: 10px;
+    font-family:'Open Sans',sans-serif;font-size:11pt;color:#aaaaaa;font-style:italic;
+
+}
+
+#story-submit {
+    height:54px;
+    width:227px;
+    background-color: #3cb878;
+    font-family:'Open Sans',sans-serif;font-size:11pt;color:#ffffff;
 }

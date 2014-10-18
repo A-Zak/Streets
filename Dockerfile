@@ -11,7 +11,7 @@ COPY . /src
 RUN cd /src; npm install
 
 
-ENV MONGO 10.240.237.225
+ENV MONGO 10.240.82.169
 ENV PORT 8080
 EXPOSE  8080
 
