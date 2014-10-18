@@ -65,15 +65,65 @@
 							$('#txt_author_name').css('color','white');
 							$("#black-overlay").addClass('black-overlay');
 							$('#img_header').fadeIn();
+							$('#your_story_container').fadeIn();
+							$('#btn-upload-photo').show();
+							$('#btn_inspire').fadeOut();
 						});
 						
 				}
-				$("#txt_geocode_address").geocomplete().bind("geocode:result", function(event, result){
+				
+				var bind_autocomplete_function = function(event, result){
 					codeAddress(result.formatted_address,geocode_callback);
-				});
+					var new_elem = $('#txt_geocode_address').clone()
+					new_elem.val(result.address_components[1].long_name.replace('St','') + " " + result.address_components[0].long_name);
+					$('#txt_geocode_address').replaceWith(new_elem);
+					new_elem.geocomplete().bind("geocode:result", bind_autocomplete_function);
+					
+				}
+				
+				$("#txt_geocode_address").geocomplete().bind("geocode:result", bind_autocomplete_function);
 				$('#stam_button').click(function() {
 					var address = $("#txt_geocode_address").val();
 					codeAddress(address,geocode_callback);
+				});
+				
+				
+				//Setting the date field:
+				
+				var m_names = new Array("January", "February", "March", 
+							"April", "May", "June", "July", "August", "September", 
+							"October", "November", "December");
+							
+				var date = new Date(); 
+				$('#actual_date_field').html(m_names[date.getMonth()] +" " + date.getDate()+ ", " + date.getFullYear());
+				
+				//Setting the text clickable your story button:
+				
+				$('#lbl_your_story').click(function() {
+					var final_width = $('#lbl_your_story').width();
+					$('#your_story_container').animate({width:final_width},1000,'swing',function() {
+						$(this).hide();
+						$('#text_area_container').show();
+						setTimeout(function() {$('#txt_your_story').focus()},1);
+					});
+				});
+				
+				$('#btn_publish').click(function() {
+				
+					$(this).css('background-color','#3cb878');
+					$(this).html("Are you sure?");
+					
+				});
+				
+				var CHARS_MAKES_PUBLISH_APPEAR = 50;
+				$('#txt_your_story').keyup(function(){
+					var cur_len = $(this).html().length;
+					var btn_publish = $('#btn_publish');
+					console.log(cur_len);
+					if ( cur_len >= CHARS_MAKES_PUBLISH_APPEAR && !btn_publish.is(":visible")  ) {
+						btn_publish.fadeIn();	
+					}
+					
 				});
 			});
 
@@ -120,6 +170,42 @@
     	padding:1em;
     }
     
+    #btn_upload_photo_container{
+    	text-align:center;
+    	padding-bottom:2em;
+    }
+    
+    #lbl_your_story{
+    	color: #D119ff;
+    }
+    
+    .btn-upload-photo {
+    	background-color: rgba(0,0,0,0.5);
+    	border:2px solid white;
+    	display:none;
+    }
+    
+    .btn-upload-photo:hover, .btn-upload-photo:focus {
+    	border:2px solid white;
+    }
+    #txt_your_story {
+    	background-color:rgba(0,0,0,0);
+    	border-width:0px;
+    	line-height:1.5em;
+    	
+    }
+    #txt_your_story:focus,input:focus,button:focus {
+    	border: none;
+    	outline:none;
+    }
+    
+    #publish_button_container {
+    	text-align:center;
+    }
+    
+    #btn_publish { 
+    	margin-top:3em;
+    }
     </style>
 </head>
 
@@ -170,13 +256,17 @@
                     <div class="site-heading">
 		                <h1><input id="txt_geocode_address" type="text" class="editable-title" value="Street name?" style="text-align:center;"/></h1>
 		                <span class="subheading" id="txt_author_name">A story by <span class='editable-title' contenteditable>your name</span></span> 
-		           
                     </div>
+                  <div id="btn_upload_photo_container">		          	 
+		                
+		                	<button type="button" id="btn-upload-photo" class="btn btn-default btn-lg btn-upload-photo">Upload your photo</button>
+		                
+		  </div>
 
              </div>
             </div>
         </div>
-	      	<div class="date-field">Written on August 12, 2014</div>
+	      	<div class="date-field">Written on <span id="actual_date_field"></span></div>
         </div>
     </header>
 
@@ -185,6 +275,19 @@
         <div class="row">
         	<div class="col-md-12" style="text-align:center;">	
 	        	<button type="button" id="btn_inspire" class="btn btn-default btn-lg">Inspire me</button>
+        	</div>
+        	
+        	<div class="col-md-12">
+        		<div id="your_story_container" style="text-align:center; display:none;">
+	        		<span id="lbl_your_story">Your story ...</span>
+	        	</div>
+	        	<div id="text_area_container" style="display:none;">
+	        		<div style="width:100%;" id="txt_your_story" contenteditable>Your story ...</textarea>
+	        	</div>
+	        	
+	        	<div id="publish_button_container">
+	        		<button type="button" id="btn_publish" class="btn btn-default btn-lg" style="display:none;">Publish your story</button>
+	        	</div>
         	</div>
 	</div>       
     </div>
