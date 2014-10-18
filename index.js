@@ -74,6 +74,12 @@ app.get('/', function(req, res){
     });
 });
 
+app.get('/about', function(req, res){
+    renderAppHtml('', function(page) {
+        res.send(200, page);
+    });
+});
+
 app.get('/story/:storyId', function(req, res){
     // Get the story, create opengraph tags, set template and return
 
