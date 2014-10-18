@@ -18,4 +18,17 @@ angular.module('streets')
             $location.path('/story/'+story._id);
         });
     };
+    $scope.first_word = function() {
+        return story.split(' ')[0];
+    };
+})
+.filter('stFirstWord', function() {
+     return function(text) {
+            return text.split(' ')[0];
+     }
+})
+.filter('stAllButFirstWord', function() {
+     return function(text) {
+            return text.split(' ').slice(1).join(' ');
+     }
 });
