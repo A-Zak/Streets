@@ -1,26 +1,48 @@
     <header id="img_header" class="intro-header" style="background-image: url(http://maps.googleapis.com/maps/api/streetview?size=400x400&location=40.720032,-73.988354&fov=90&heading=235&pitch=10)">
         <div class="container">
+
             <div class="row">
+
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div id="story-title">
+                    StreetsOf<span id="story-title-bold">TLV</div>
+                </div>
+
                     <div class="site-heading">
-                        <h1>Once upon a time in Tel Aviv</h1>
-                        <hr class="small">
-                        <span class="subheading">A story about love and darkness</span>
+                        <h1 id="story-title">13 Shocken St.</h1>
+                        <!--<hr class="small">-->
+                        <span id="story-subtitle" class="subheading thin">A story about love and darkness</span>
+                        <div id="story-map" style="margin-top: 70px">
+                            <a href="#">
+                                <img src="/public/css/img/map.png" style="width:24px; height: 35px"/>
+
+                                <div class="thin roboto" style="font-size: 15px">
+                                    View on Map
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </header>
 
     <!-- Main Content -->
     <div class="container">
         <div class="row">
+            <a href="#"><img class="pointer" src="/public/css/img/arrow-left.png" style="width: 15px"/></a>
+
+                <span id="story-create">Written on {{story.storyCreateDate | date:'MMMM dd, yyyy'}}</span>
+            <a href="#"><img class="pointer" src="/public/css/img/arrow-right.png" style="width: 15px"/></a>
+        </div>
+        <div class="row">
             <div class="col-md-8">
              	<div>
              		<i class="fa fa-map-marker"></i><a href="#">{{ story.location }}</a>
              	</div>
-             	<div>
-             		<div><i class="fa fa-align-justify"></i><a href="#">Story</a></div>
+             	<div id="story-text">
+             		<div ><i class="fa fa-align-justify"></i><a href="#">Story</a></div>
              		{{ story.text }}
              	</div>
              	
