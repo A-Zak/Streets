@@ -76,6 +76,9 @@ app.post('/story', function(req,res){
     console.log('Adding new story');
     var col = mdb.collection('stories');
     var story = req.body;
+    
+    story.storyCreateDate = new Date();
+    
     //TODO: add some validations!!!
     col.insert(story, function(err, records){
         if(err){

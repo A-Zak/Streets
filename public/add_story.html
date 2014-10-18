@@ -21,7 +21,6 @@
     <script src="/public/js/bootstrap.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="/public/js/clean-blog.min.js"></script>
     
     <!-- Custom CSS -->
     <link href="/public/css/clean-blog.css" rel="stylesheet">
@@ -145,6 +144,17 @@
 					}
 					
 				});
+				
+				
+				//Upload photo:
+				
+				$('#btn-upload-photo').click(function() {
+					$('#btn_upload').click();
+				});
+				
+			     $("input:file").change(function (){
+			     	$("#frm_fileupload").submit();
+			     });
 			});
 
 	</script>
@@ -280,6 +290,10 @@
                   <div id="btn_upload_photo_container">		          	 
 		                
 		                	<button type="button" id="btn-upload-photo" class="btn btn-default btn-lg btn-upload-photo">Upload your photo</button>
+		                	  <form action="/upload" enctype="multipart/form-data" method="post" id="frm_fileupload">
+		                		<input type="file" id="btn_upload" name="upload" style="visibility: hidden; width: 1px; height: 1px" />
+		                	</form>
+
 		                
 		  </div>
 
