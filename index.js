@@ -7,20 +7,6 @@ var stories = require('./DBSamples/all.json');
 
 var mdb = null;
 
-var mongoIP = process.env.MONGO ? process.env.MONGO : "127.0.0.1";
-
-var loadStories = function () { 
-    var col = mdb.collection('stories');
-    stories.map(function(story){
-        col.insert(story, function(err,col){});
-    });
-}
-
-mongo.connect('mongodb://' + mongoIP + ':27017/streets', function(err, db){
-	if (err) throw err;
-	mdb = db;
-})
-
 
 app.set('port', (process.env.PORT || 5555));
 app.use(bodyParser.json());
@@ -94,12 +80,56 @@ app.get('/cleandb', function(req,res){
 	res.send("db clean!");
 });
 
+
+var loadStories = function () { 
+    var col = mdb.collection('stories');
+    stories.map(function(story){
+        col.insert(story, function(err,col){});
+    });
+}
+
+
 app.get('/loadStories', function(req,res){
 	loadStories();
 	res.send("loaded");
 });
 
 
-app.listen(app.get('port'), function() {
-	console.log("running on localhost:" + app.get('port'));
-});
+
+
+
+
+
+
+// production external ip: 107.167.178.229
+var mongoIP = process.env.MONGO ? process.env.MONGO : "127.0.0.1";
+
+console.log("connecting to mongo:" + 'mongodb://' + mongoIP + ':27017/streets');
+
+
+
+mongo.connect('mongodb://' + mongoIP + ':27017/streets', function(err, db){
+    
+    if (err) throw err;
+
+    
+    console.log("mongo connected!");
+    mdb = db;
+
+    app.listen(app.get('port'), function() {
+        console.log("running on localhost:" + app.get('port'));
+    });
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
