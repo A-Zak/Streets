@@ -1,0 +1,143 @@
+        <style>
+#canvas-container {
+  position: relative;
+
+}
+
+textarea {
+  position: absolute;
+  top: 150px;
+  font-size: 3em;
+  text-align:  right;
+  line-height: 1.3em;
+  direction:rtl;
+}
+
+[name="texta"] {
+  left: 70px;
+  -webkit-transform: rotate(10deg);
+}
+
+[name="textb"] {
+  left: 420px;
+  font-size: 3em;
+  -webkit-transform: rotate(-10deg);
+}
+
+.fb-share-button {
+    display: block !important;
+}
+
+.button, .button:visited {
+    background: #222 url(overlay.png) repeat-x;
+    display: inline-block;
+    padding: 5px 10px 6px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+    border-bottom: 1px solid rgba(0,0,0,0.25);
+    position: relative;
+    cursor: pointer;
+}
+
+        </style>
+
+
+    <div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1482345968721305',
+      xfbml      : true,
+      version    : 'v2.1'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+    <section id="canvas-container">
+
+      <canvas id="myCanvas" width="700" height="500">
+        הדפדפן שלך אינו תומך ב-HTML 5
+      </canvas>
+      <form id="meme-form" method="get" target="_self">
+        <textarea name="texta" cols="7" rows="2"></textarea>
+        <textarea name="textb" cols="7" rows="2"></textarea>
+        <input id="meme-submit" class="button" type="submit" value="שלח מים" />
+      </form>
+    </section>
+
+    <div class="fb-share-button"></div>
+    <img id="final-image" />
+
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script>
+ jQuery(function($) {
+      var texta = getQueryVariable('texta');
+      var textb = getQueryVariable('textb');
+      if (texta && textb) {
+        $('textarea').remove();
+            $('#meme-submit').remove();
+        var canvas = document.getElementById('myCanvas');
+        var ctx = canvas.getContext('2d');
+        var imageObj = new Image();
+
+        imageObj.onload = function() {
+            ctx.drawImage(imageObj, 0, 0, 700, 500);
+            ctx.font = "40pt Calibri";
+        ctx.textAlign = 'center';
+
+            ctx.save();
+            ctx.rotate(0.2);
+            ctx.fillText(decodeURIComponent(texta).replace('+', ' '), 220, 185, 200);
+            ctx.restore();
+
+            ctx.save();
+            ctx.rotate(-0.15);
+            ctx.fillText(decodeURIComponent(textb).replace('+', ' '), 480, 300, 200);
+            ctx.restore();
+
+                var img = canvas.toDataURL("image/png");
+                $('#final-image').attr('src', img)
+        };
+
+        imageObj.src = '/SyqbHLf.jpg';
+
+
+
+            $('#canvas-container').remove();
+
+            $('.fb-share-button').data('href', window.location.href);
+
+      } else {
+        var canvas = document.getElementById('myCanvas');
+        var ctx = canvas.getContext('2d');
+        var imageObj = new Image();
+
+        imageObj.onload = function() {
+            ctx.drawImage(imageObj, 0, 0, 700, 500);
+        };
+
+        imageObj.src = '/SyqbHLf.jpg';
+      }
+
+      function getQueryVariable(variable) {
+       var query = window.location.search.substring(1);
+       var vars = query.split("&");
+       for (var i=0;i<vars.length;i++) {
+               var pair = vars[i].split("=");
+               if(pair[0] == variable){return pair[1];}
+       }
+       return(false);
+    }
+ });
+
+    </script>

@@ -87,6 +87,12 @@ app.get('/add_story', function(req, res){
     });
 });
 
+app.get('/streets_meet', function(req, res){
+    renderAppHtml('', function(page) {
+        res.send(200, page);
+    });
+});
+
 app.get('/story/:storyId', function(req, res){
     // Get the story, create opengraph tags, set template and return
 

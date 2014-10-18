@@ -112,6 +112,10 @@ angular.module('streets', [
         templateUrl: TEMPLATES_DIR + 'about.html',
 
     })
+    .when('/streets_meet', {
+        templateUrl: TEMPLATES_DIR + 'meme_generator.html',
+
+    })
     .otherwise({
       redirectTo:'/'
     });
