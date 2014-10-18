@@ -1,5 +1,5 @@
-    <header id="img_header" class="intro-header"  style="background-repeat: no-repeat; background-size: cover;  backgroun-position: center; background-color: black; margin-bottom: 0px" >
-        <!-- ng-style="{'background-image': 'url('+story.imageUrl+')'}" -->
+    <header id="img_header" class="intro-header"  ng-style="{'background-image': 'url('+story.imageUrl+')'}" style="background-repeat: no-repeat; background-size: cover;  backgroun-position: center; background-color: black; margin-bottom: 0px" >
+        <!-- -->
         <div class="container">
 
             <div class="row">
@@ -65,13 +65,28 @@
             	<!--<div><i class="fa fa-calendar"></i>{{ story.storyDate }}</div>-->
             	<!--<div><input id="txt_tags" type="text" value="{{ story.tags }}" disabled=disabled data-role="tagsinput"/></div>-->
             <!--</div>-->
-
         </div>
-        <div class="row" style="margin-top: 20px;">
+
+        <div class="row" style="margin-top:80px;">
+            <div class="col-md-8 col-md-offset-2" >
+                <div style="float:left">
+                <a><img class="share-button" src="/public/css/img/fb_button_off.png" /></a>
+                <a style="margin-left: 10px"><img class="share-button" src="/public/css/img/tw_button_off.png"/></a>
+                    </div>
+                <form id="story-form" >
+                    <input id="story-email" type="text" placeholder="Your Email"/>
+                    <button id="story-submit">Send me new stories</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 42px;">
             <div class="col-md-8 col-md-offset-2">
                 <hr>
             </div>
         </div>
+
+
 
     </div>
 
@@ -85,14 +100,15 @@
                     <div id="story-yours">
                         {{ call_to_action }}
                     </div>
-                             	<div>
 
-             		<a href="#"><span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-plus fa-stack-1x fa-inverse"></i> 
-					</span>
-					Add your story</a><br/>
-             	</div>
+
+                    <div style="text-align: center; margin-top: 50px">
+             	    	<button id="story-button" href="#">
+					        Tell your story
+                        </button>
+                        <br/>
+                    </div>
+
                 </div>
             </div>
 
