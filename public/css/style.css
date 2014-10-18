@@ -67,9 +67,43 @@ div#story-map a img {
 
 #story-yours {
 
-    font-family:'Open Sans',sans-serif;font-size:40px;color:#000000;
-    font-weight: 400;
-    text-shadow: 1px 1px 2px #404040;
-    line-height: 40px;
+    font-family:'Open Sans',sans-serif;font-size:31pt;color:#000000;
+    font-weight: 300;
     text-align: center;
+}
+
+#story-button {
+    background-color: #d429ff;
+    font-family:'Open Sans',sans-serif;font-size:13pt;color:#ffffff;
+    font-weight: 300;
+    text-align: center;
+    width: 200px;
+    height: 53px;
+    border: none;
+}
+
+#story-button:hover {
+    background-color: #bf25e5;
+
+}
+
+.share-button {
+    width: 54px;
+    height: 54px;
+}
+
+#story-email {
+    margin-left: 23px;
+    height:54px;
+    width:227px;
+    padding-left: 10px;
+    font-family:'Open Sans',sans-serif;font-size:11pt;color:#aaaaaa;font-style:italic;
+
+}
+
+#story-submit {
+    height:54px;
+    width:227px;
+    background-color: #3cb878;
+    font-family:'Open Sans',sans-serif;font-size:11pt;color:#ffffff;
 }
