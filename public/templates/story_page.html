@@ -1,18 +1,32 @@
-    <header id="img_header" class="intro-header"  ng-style="{'background-image': 'url('+story.imageUrl+')'}" style="background-repeat: no-repeat; background-size: cover;  backgroun-position: center; background-color: black; margin-bottom: 0px" >
+    <header id="img_header" class="intro-header"   style="margin-bottom: 0px" >
+
+        <div ng-style="{'background-image': 'url('+story.imageUrl+')'}" style="z-index: 1; background-size: cover;  ">
+
         <!-- -->
-        <div class="container">
+        <div class="container" style="z-index:1">
 
             <div class="row">
 
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div id="story-title">
-                    StreetsOf<span id="story-title-bold">TLV</div>
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 " style="float:left">
+                    <div id="story-title" >
+                    StreetsOf<span id="story-title-bold">TLV</span>
+                    </div>
+
                 </div>
 
+<span style="margin-left: 200px; text-align:none; margin-top: 40px; float:right; margin-top:-35px">
+             	    	<button class="story-button" href="/add_story" style="background-color: #ffffff; color: #d429ff; width:186px; height: 51px; font-size: 11pt;">
+                            <img src="/public/css/img/pencil_icon.png" style="height:15px; width:15px; ">
+					        What's your story
+                        </button>
+
+                    </span>
+
+
                     <div class="site-heading" style="padding: 40px 0; text-align:center;">
-                        <h1 id="story-heading">13 Shocken St.</h1>
+                        <h1 id="story-heading">{{story.location}}</h1>
                         <!--<hr class="small">-->
-                        <div id="story-subtitle" class="thin">A story by Ron Segall</div>
+                        <div id="story-subtitle" class="thin">A story by {{story.authorName}}</div>
                         <div id="story-map" style="margin-top: 40px">
                             <a href="#">
                                 <img src="/public/css/img/map.png" style="width:24px; height: 35px"/>
@@ -26,14 +40,17 @@
                 </div>
             </div>
 
+            
+        </div>
         </div>
     </header>
+
         <div class="row" style="background-color: #ffffff">
-            <div class="col-md-10 col-md-offset-2" style="line-height: 54px">
-                <span class="col-md-2"><a ng-click="toPreviousStory()"><img class="pointer" src="/public/css/img/arrow-left.png" style="width: 15px"/></a>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-2" style="line-height: 54px;">
+                <span class="col-md-2 col-md-offset-1"><a ng-click="toPreviousStory()"><img class="pointer" src="/public/css/img/arrow-left.png" style="width: 15px"/></a>
                 </span>
-                    <span class="col-md-6" id="story-create">Written on {{story.storyCreateDate | date:'MMMM dd, yyyy'}}</span>
-                <span class="col-md-2 col-md-offest-2"><a ng-click="toNextStory()" ><img class="pointer" src="/public/css/img/arrow-right.png" style="width: 15px"/></a>
+                    <span class="col-md-8" id="story-create">Written on {{story.storyCreateDate | date:'MMMM dd, yyyy'}}</span>
+                <span class="col-md-1 " style="margin-left:-8px"><a ng-click="toNextStory()" ><img class="pointer" src="/public/css/img/arrow-right.png" style="width: 15px"/></a>
                     </span>
             </div>
         </div>
@@ -43,7 +60,7 @@
     <div class="container" >
 
         <div class="row" >
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-2">
              	<!--<div>-->
              		<!--<i class="fa fa-map-marker"></i><a href="#">{{ story.location }}</a>-->
              	<!--</div>-->
@@ -88,7 +105,7 @@
 
 </div>
     <!-- Footer -->
-    <footer style="background-color: #fafafa">
+    <footer style="background-color: #fafafa; padding: 20px">
         <div class="container">
 
             <div class="row">
@@ -99,11 +116,22 @@
 
 
                     <div style="text-align: center; margin-top: 50px">
-             	    	<button id="story-button" href="#">
+             	    	<button class="story-button" href="/add_story">
 					        Tell your story
                         </button>
                         <br/>
                     </div>
+
+                    <div style="text-align: center; margin-top: 115px">
+
+					        <a href="/terms">Terms of Service </a>
+                            <span>&#8226;</span>
+                            <!--<a href="#">Privacy Policy</a>-->
+                            <a href="#">About</a>
+
+                        <br/>
+                    </div>
+
 
                 </div>
             </div>
