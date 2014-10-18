@@ -10,6 +10,10 @@ angular.module('streets')
 .controller('StoryPageController', function($interval, $timeout, $scope, story, StoryService, $location, StoryCursorService, RandomCallToActionService, SocialShareService) {
     $scope.story = story;
 
+    if (typeof(story.imageUrl) === 'undefined' || story.imageUrl.length === 0 ) {
+        story.imageUrl = '/public/default.jpg';
+    }
+
     // Pre-fetch next and prev
     StoryService.getStoryByOrderIndex(StoryCursorService.peekNext());
     StoryService.getStoryByOrderIndex(StoryCursorService.peekPrev());
