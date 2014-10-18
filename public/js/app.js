@@ -115,6 +115,10 @@ angular.module('streets', [
         templateUrl: TEMPLATES_DIR + 'add_story.html',
 
     })
+    .when('/about', {
+        templateUrl: TEMPLATES_DIR + 'about.html',
+
+    })
     .otherwise({
       redirectTo:'/'
     });

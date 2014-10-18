@@ -34,9 +34,10 @@ var mdb = null;
 
 function generateOpenGraphTags(story) {
     var opengraph =
-        '<meta name="og:title" content="Streets.City - ' + story.location + ' by ' + story.authorName + '">'+
+        '<meta name="og:title" content="A story at ' + story.location + ' by ' + story.authorName + '">'+
         '<meta name="og:site_name" content="Streets.City">'+
-        '<meta name="og:description" content="A short story taking place in ' + story.location + ' by ' + story.authorName + ' written on ' + story.storyCreateDate +'">'+
+        //'<meta name="og:description" content="A short story taking place in ' + story.location + ' by ' + story.authorName + ' written on ' + story.storyCreateDate +'">'+
+        '<meta name="og:description" content="' + story.text.replace('"','&quot;') + '">'+
         '<meta name="og:image" content="'+story.imageUrl+'">'+
         '<meta name="fb:app_id" content="'+FACEBOOK_APP_ID+'">';
 
@@ -70,6 +71,12 @@ app.get('/', function(req, res){
     var openGraphTags = OPENGRAPH_TAGS_MAIN_PAGE;
 
     renderAppHtml(openGraphTags, function(page) {
+        res.send(200, page);
+    });
+});
+
+app.get('/about', function(req, res){
+    renderAppHtml('', function(page) {
         res.send(200, page);
     });
 });
@@ -157,9 +164,7 @@ app.post('/image', function(req,res){
 	req.pipe(req.busboy);
 	req.busboy.on('file', function(fieldname, file, filename, encoding, mimetype){
 		var newId = uuid.v4();
-		console.log(encoding, mimetype);
-		var filename = newId + "." + mimetype.split("/")[1];
-		var path = "/image/" + filename;
+		var filename = "/image/" + newId + "." + mimetype.split("/")[1];
 		file.pipe(bucket.createWriteStream(filename))
 			.on('complete', function(){
 				res.send(path);

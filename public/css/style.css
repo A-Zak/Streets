@@ -72,7 +72,7 @@ div#story-map a img {
     text-align: center;
 }
 
-#story-button {
+.story-button {
     background-color: #d429ff;
     font-family:'Open Sans',sans-serif;font-size:13pt;color:#ffffff;
     font-weight: 300;
@@ -115,4 +115,6 @@ div#story-map a img {
     background-color: #3cb878;
     font-family:'Open Sans',sans-serif;font-size:11pt;color:#ffffff;
     border-width:0px;
+    margin-left: 23px;
 }
+
