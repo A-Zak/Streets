@@ -36,9 +36,6 @@ angular.module('streets', [
         return storyCursor - 1;
     }
 })
-.service('RandomCallToActionService', function() {
-
-})
 .service('StoryService', function(Restangular, $q) {
     var storyCache = {};
 
