@@ -11,7 +11,24 @@ function isRTL(s){
 angular.module('streets', [
     'ngRoute', 'restangular'
 ])
-.constant('HOMEPAGE_STORY_ID', '544245f6b17e642414e1ca00')
+.constant('HOMEPAGE_STORY_ID', '5442471af357ff8b14cfc104')
+.service('StoryCursorService', function() {
+    var storyCursor = 0;
+
+    this.next = function() {
+        storyCursor += 1;
+        return storyCursor;
+    };
+
+    this.prev = function() {
+        storyCursor -= 1;
+        return storyCursor;
+    };
+
+    this.curr = function() {
+        return storyCursor;
+    };
+})
 .service('StoryService', function(Restangular, $q) {
     var storyCache = {};
 
@@ -42,45 +59,20 @@ angular.module('streets', [
         }); // Cache it when it returns;
 
         return p;
-    }
+    };
 
-    storyOrder = [];
+    var storyOrder = {};
 
     // getNextStory returns a promise
-    this.getRelatedStory = function(currStoryId, direction) {
-        // If we have a cached related story return it
-        var storyIndex = storyOrder.indexOf(currStoryId);
+    this.getStoryByOrderIndex = function(storyIndex) {
 
-        if (storyIndex === -1) {
-            // If we get an unknown story, reset the story order and make a new one
-            // (This is the fastest way to clear a list in javascript)
-            while (storyOrder.length > 0) { storyOrder.pop(); }
-
-            storyOrder.push(currStoryId);
-            storyIndex = storyOrder.indexOf(currStoryId);
-        }
-
-        var nextStoryIndex;
-
-        if ( direction === 'next') {
-            nextStoryIndex = storyIndex + 1;
-        } else if ( direction === 'prev') {
-            nextStoryIndex = storyIndex - 1;
-        } else {
-            throw Error('Invalid position passed to getRelatedStory.');
-        }
-
-        if ( typeof(storyOrder[nextStoryIndex]) !== 'undefined') {
-            return this.getOneStory(storyOrder[nextStoryIndex]);
+        if ( typeof(storyOrder[storyIndex]) !== 'undefined') {
+            return this.getOneStory(storyOrder[storyIndex]);
         } else {
             var p = this.getRandomStory();
 
             p.then(function(newStory) {
-                if (nextStoryIndex === -1) {
-                    storyOrder.unshift(newStory._id);
-                } else {
-                    storyOrder.push(newStory._id);
-                }
+                storyOrder[storyIndex] = newStory._id;
             });
 
             return p;
