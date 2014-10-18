@@ -30,7 +30,9 @@
                     <div class="site-heading" style="padding: 40px 0; text-align:center;">
                         <h1 id="story-heading">{{story.location}}</h1>
                         <!--<hr class="small">-->
-                        <div id="story-subtitle" class="thin">A story by {{story.authorName}}</div>
+                        <div id="story-subtitle" class="thin" ng-if="story.authorName">A story by {{story.authorName}}</div>
+                        <div id="story-subtitle" class="thin" ng-if="!story.authorName">A story by an anonymous author</div>
+
                         <div id="story-map" style="margin-top: 40px">
                             <a href="#">
                                 <img src="/public/css/img/map.png" style="width:24px; height: 35px"/>
