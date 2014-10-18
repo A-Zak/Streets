@@ -11,7 +11,6 @@ function isRTL(s){
 angular.module('streets', [
     'ngRoute', 'restangular'
 ])
-.constant('HOMEPAGE_STORY_ID', '5442471af357ff8b14cfc104')
 .service('StoryCursorService', function() {
     var storyCursor = 0;
 
@@ -37,8 +36,16 @@ angular.module('streets', [
         return storyCursor - 1;
     }
 })
+.service('RandomCallToActionService', function() {
+
+})
 .service('StoryService', function(Restangular, $q) {
     var storyCache = {};
+
+    // getFirstStory returns a promise
+    this.getFirstStory = function() {
+        return Restangular.one('firstStory').get();
+    };
 
     // getOneStory returns a promise
     this.getOneStory = function(storyId) {
@@ -93,7 +100,7 @@ angular.module('streets', [
       controller:'StoryPageController',
       templateUrl: TEMPLATES_DIR + 'story_page.html',
       resolve: {
-          'story': function(HOMEPAGE_STORY_ID, StoryService) { return StoryService.getOneStory(HOMEPAGE_STORY_ID); }
+          'story': function(StoryService) { return StoryService.getFirstStory(); }
       }
     })
     .when('/story/:storyId', {
