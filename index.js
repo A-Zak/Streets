@@ -15,7 +15,7 @@ app.set('port', (process.env.PORT || 5555));
 app.use(bodyParser.json());
 app.use('/public', express.static(__dirname + '/public'));
 app.get('/', function(req, res){
-	res.sendFile('./public/app.html');
+	res.sendFile(__dirname+'/public/app.html');
 });
 
 
