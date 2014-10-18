@@ -23,8 +23,8 @@
     <!-- Custom Theme JavaScript -->
     
     <!-- Custom CSS -->
-    <link href="/public/css/clean-blog.css" rel="stylesheet">
-
+    <link href="/public/css/clean-blog.css" rel="stylesheet"> 
+    <link href="/public/css/style.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -116,6 +116,7 @@
 						$('#btn_publish').fadeOut(function() {
 							$('#share_buttons_containers').fadeIn();
 						});
+						$('#btn-upload-photo').fadeOut();
 						
 					})
 					.fail(function() {
@@ -136,7 +137,7 @@
 				//Handling the publish button:
 				
 				
-				var CHARS_MAKES_PUBLISH_APPEAR = 50;
+				var CHARS_MAKES_PUBLISH_APPEAR = 20;
 				$('#txt_your_story').keyup(function(){
 					var cur_len = $(this).html().length;
 					var btn_publish = $('#btn_publish');
@@ -156,6 +157,11 @@
 				
 			     $("input:file").change(function (){
 			     	$("#frm_fileupload").submit();
+			     });
+			     
+			     $('#postframe').load(function() {
+			     	var url = 'url('+$(this).contents().find("body").html() + ')';
+			     	$('#img_header').css('background-image',url);
 			     });
 			});
 
@@ -327,7 +333,8 @@
 	        	</div>
 	        	
 	        	<div id="share_buttons_containers" style="display:none;">
-	        		<span id="story_over">Yeah! your story is live!</span>
+	        		<div id="story_over">Yeah! your story is live!</div>
+	        		<div>
 			       <div style="float:left">
 				<a><img class="share-button" src="/public/css/img/fb_button_off.png" /></a>
 				<a style="margin-left: 10px"><img class="share-button" src="/public/css/img/tw_button_off.png"/></a>
@@ -337,6 +344,7 @@
 				    <button id="story-submit">Send me new stories</button>
 				</form>
 				</div>
+				<div>
         	</div>
 	</div>       
     </div>

@@ -87,9 +87,17 @@ div#story-map a img {
 
 }
 
+#story_over {
+	font-size:2em;
+	font-weight: 300;
+	margin-bottom:1em;
+	margin-top:1em;
+}
+
 .share-button {
     width: 54px;
     height: 54px;
+    cursor:pointer !important;
 }
 
 #story-email {
@@ -106,4 +114,5 @@ div#story-map a img {
     width:227px;
     background-color: #3cb878;
     font-family:'Open Sans',sans-serif;font-size:11pt;color:#ffffff;
+    border-width:0px;
 }

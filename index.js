@@ -149,6 +149,7 @@ app.get('/api/story', function(req,res){
 });
 
 app.get('/image/:filename', function(req,res){
+	console.log(req.params.filename);
 	bucket.createReadStream(req.params.filename).pipe(res);
 });
 
@@ -157,10 +158,11 @@ app.post('/image', function(req,res){
 	req.busboy.on('file', function(fieldname, file, filename, encoding, mimetype){
 		var newId = uuid.v4();
 		console.log(encoding, mimetype);
-		var filename = "/image/" + newId + "." + mimetype.split("/")[1];
+		var filename = newId + "." + mimetype.split("/")[1];
+		var path = "/image/" + filename;
 		file.pipe(bucket.createWriteStream(filename))
 			.on('complete', function(){
-				res.send(filename);
+				res.send(path);
 			})
 			.on('error', function(e){
 				console.log("error",e);
