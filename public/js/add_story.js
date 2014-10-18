@@ -77,14 +77,11 @@ angular.module('streets')
                 authorName:$('#txt_your_name').html(),
             };
 
-            console.log(json);
 
             $.post('/api/story',json)
             .done(function(story) {
-                    console.log("DONE POSTING",story._id,$location.path());
-
-                    $location.path('/story/'+story._id);
-                    $scope.$apply();
+		    $location.path('/story/'+story._id);
+	            $scope.$apply();
                     /*
                 $('#btn_publish').fadeOut(function() {
                     $('#share_buttons_containers').fadeIn();
@@ -114,7 +111,6 @@ angular.module('streets')
         $('#txt_your_story').keyup(function(){
             var cur_len = $(this).html().length;
             var btn_publish = $('#btn_publish');
-            console.log(cur_len);
             if ( cur_len >= CHARS_MAKES_PUBLISH_APPEAR && !btn_publish.is(":visible")  ) {
                 btn_publish.fadeIn();
             }
