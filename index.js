@@ -43,6 +43,11 @@ app.get('/story/:storyId', function(req,res){
 });
 
 
+app.get('/add_story', function(req,res,next) {
+	res.sendFile(__dirname+'/public/add_story.html');
+});
+
+
 app.get('/story', function(req,res){
 	var col = mdb.collection('stories');
 	col.count(function(err, count){
