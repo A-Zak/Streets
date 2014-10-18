@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var stories = require('./DBSamples/all.json');
 var gcloud = require('gcloud');
 var uuid = require('node-uuid');
+var busboy = require('connect-busboy');
 
 var bucket;
 var projectId = 'kiddyup-web-001';
@@ -43,6 +44,7 @@ mongo.connect('mongodb://' + mongoIP + ':27017/streets', function(err, db){
 
 app.set('port', (process.env.PORT || 5555));
 app.use(bodyParser.json());
+app.use(busboy());
 app.use('/public', express.static(__dirname + '/public'));
 app.get('/', function(req, res){
 	res.sendFile(__dirname+'/public/app.html');
@@ -95,11 +97,13 @@ app.get('/api/story', function(req,res){
 });
 
 app.post('/image', function(req,res){
-	var newId = uuid.v4();
-	var nameParts = req.files.fieldname.name.split(".");
-	var extention = nameParts[nameParts.length -1];
-	var filename = newId + "." + extention;
-	res.send(filename);
+	req.busboy.on('file', function(fieldname, file, filename, encoding, mimetype){
+
+		var newId = uuid.v4();
+		console.log(encoding, mimetype);
+		var filename = newId + "." + "tmp.jpg";
+		res.send(filename);
+	});
 	//bucket.createWriteStream(filename)
 	//
 });
