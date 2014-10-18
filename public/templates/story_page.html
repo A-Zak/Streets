@@ -3,9 +3,9 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="site-heading">
-                        <h1>Once upon a time in Tel Aviv</h1>
+                        <h1>{{ story.location }}</h1>
                         <hr class="small">
-                        <span class="subheading">A story about love and darkness</span>
+                        <span class="subheading">A story by {{ story.authorName }}</span>
                     </div>
                 </div>
             </div>
@@ -14,6 +14,14 @@
 
     <!-- Main Content -->
     <div class="container">
+        <div class="row" style="margin-bottom: 30px">
+            <div class="col-md-6">
+                <a ßng-click="toPreviousStory()">Previous</a>
+            </div>
+            <div class="col-md-6">
+                <a ng-click="toNextStory()">Next</a>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-8">
              	<div>
