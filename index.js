@@ -29,6 +29,7 @@ app.get('/story/:storyId', function(req,res){
         var objectId = ObjectID.createFromHexString(storyId);
     }catch(e){
         res.send(500, 'Error : please provide a valid storyId');
+        return;
     }
 
     console.log('Fetch story for story ID : ' + storyId);
