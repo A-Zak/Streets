@@ -11,6 +11,7 @@ var FACEBOOK_APP_ID = '543308622468738';
 var mongoIP = process.env.MONGO ? process.env.MONGO : "127.0.0.1";
 var gcloud = require('gcloud');
 var uuid = require('node-uuid');
+var busboy = require('connect-busboy');
 
 var bucket;
 var projectId = 'kiddyup-web-001';
@@ -62,6 +63,7 @@ var OPENGRAPH_TAGS_MAIN_PAGE =
 
 app.set('port', (process.env.PORT || 5555));
 app.use(bodyParser.json());
+app.use(busboy());
 app.use('/public', express.static(__dirname + '/public'));
 app.get('/', function(req, res){
     var openGraphTags = OPENGRAPH_TAGS_MAIN_PAGE;
@@ -129,6 +131,11 @@ app.get('/add_story', function(req,res,next) {
 	res.sendFile(__dirname+'/public/add_story.html');
 });
 
+app.get('/terms', function(req,res,next) {
+    res.sendFile(__dirname+'/public/terms.html');
+});
+
+
 
 app.get('/api/story', function(req,res){
 	var col = mdb.collection('stories');
@@ -140,14 +147,24 @@ app.get('/api/story', function(req,res){
 	});
 });
 
+app.get('/image/:filename', function(req,res){
+	bucket.createReadStream(req.params.filename).pipe(res);
+});
+
 app.post('/image', function(req,res){
-	var newId = uuid.v4();
-	var nameParts = req.files.fieldname.name.split(".");
-	var extention = nameParts[nameParts.length -1];
-	var filename = newId + "." + extention;
-	res.send(filename);
-	//bucket.createWriteStream(filename)
-	//
+	req.pipe(req.busboy);
+	req.busboy.on('file', function(fieldname, file, filename, encoding, mimetype){
+		var newId = uuid.v4();
+		var filename = "/image/" + newId + "." + mimetype.split("/")[1];
+		file.pipe(bucket.createWriteStream(filename))
+			.on('complete', function(){
+				res.send(filename);
+			})
+			.on('error', function(e){
+				console.log("error",e);
+				res.send(401, e);
+			});
+	});
 });
 
 var FIRST_STORY_MAGIC_ID = 'first_story';
