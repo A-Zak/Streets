@@ -4,6 +4,30 @@ var mongo = require("mongodb").MongoClient;
 var ObjectID = require('mongodb').ObjectID;
 var bodyParser = require('body-parser');
 var stories = require('./DBSamples/all.json');
+var gcloud = require('gcloud');
+var uuid = require('node-uuid');
+
+var bucket;
+var projectId = 'kiddyup-web-001';
+var bucketName = 'streets';
+
+if(process.env.MONGO){
+	bucket = gcloud.storage.bucket({
+		  projectId: projectId,
+	         bucketName: bucketName
+	});
+} else {
+	bucket = gcloud.storage.bucket({
+		  projectId: projectId,
+	         keyFilename: __dirname + '/gcloud.json',
+	         bucketName: bucketName
+	});
+}
+
+bucket.write('test.txt','this is the content',function(err){
+	console.log("first",err);
+	bucket.createReadStream('test.txt').pipe(process.stdout, {end : false});
+})
 
 var mdb = null;
 
@@ -64,6 +88,15 @@ app.get('/story', function(req,res){
 			res.send(doc);
 		});
 	});
+});
+
+app.post('/image', function(req,res){
+	var newId = uuid.v4();
+	var nameParts = req.files.fieldname.name.split(".");
+	var extention = nameParts[nameParts.length -1];
+	var filename = newId + "." + extention;
+	res.send(filename);
+	//bucket.createWriteStream(filename)
 });
 
 
