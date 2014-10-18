@@ -120,7 +120,7 @@
 
                     <div class="site-heading">
 		                <h1><input id="txt_geocode_address" type="text" class="editable-title" value="Street name?" style="text-align:center;"/></h1>
-		                <span class="subheading" id="txt_author_name">A story by <span id="txt_your_name" class='editable-title' contenteditable>your name</span></span>
+		                <span class="subheading" id="txt_author_name">A story by <span id="txt_your_name" class='editable-title' contenteditable>[Enter your name]</span></span>
                     </div>
                   <div id="btn_upload_photo_container">
 
@@ -144,15 +144,15 @@
     <div class="container">
         <div class="row">
         	<div class="col-md-12" style="text-align:center;">
-	        	<button type="button" id="btn_inspire" class="btn btn-default btn-lg">Inspire me</button>
+	        	<button type="button" id="btn_inspire" class="btn btn-default btn-lg" style="display: none;">Inspire me</button>
         	</div>
 
         	<div class="col-md-12">
         		<div id="your_story_container" style="text-align:center; display:none;">
-	        		<span id="lbl_your_story">Your story ...</span>
+	        		<span id="lbl_your_story">Begin writing your story...</span>
 	        	</div>
 	        	<div id="text_area_container" style="display:none;">
-	        		<div style="width:100%;" id="txt_your_story" contenteditable>Your story ...</div>
+	        		<div style="width:100%;" id="txt_your_story" contenteditable></div>
 	        	</div>
 
 	        	<div id="publish_button_container">
@@ -166,7 +166,7 @@
 				<a><img class="share-button" src="/public/css/img/fb_button_off.png" /></a>
 				<a style="margin-left: 10px"><img class="share-button" src="/public/css/img/tw_button_off.png"/></a>
 				    </div>
-				<form id="story-form" >
+				<form id="story-form">
 				    <input id="story-email" type="text" placeholder="Your Email"/>
 				    <button id="story-submit">Send me new stories</button>
 				</form>

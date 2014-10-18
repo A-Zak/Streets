@@ -30,7 +30,7 @@ angular.module('streets')
     // Replace call to action every 5s
     $scope.call_to_action = RandomCallToActionService.getCallToAction();
 
-    $interval(function() {
+    var anim = $interval(function() {
         $('#story-yours').animate({opacity: 0},{
             duration: 400,
             complete: function() {
@@ -43,6 +43,8 @@ angular.module('streets')
         })
 
     },4000);
+
+    $scope.$on('$destroy', function() { $interval.cancel(anim); });
 
     $scope.launchTwitterShare = function() {
         SocialShareService.twitterShareUrl($location.absUrl());

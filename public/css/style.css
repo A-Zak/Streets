@@ -22,6 +22,7 @@ div#story-text {
     text-align: justify;
     line-height: 23pt;
     margin-top: 53px;
+    white-space: pre-line;
 }
 
 div.site-heading h1#story-heading {

@@ -61,7 +61,7 @@ angular.module('streets')
 
         $('#lbl_your_story').click(function() {
             var final_width = $('#lbl_your_story').width();
-            $('#your_story_container').animate({width:final_width},1000,'swing',function() {
+            $('#your_story_container').animate({width:final_width},550,'swing',function() {
                 $(this).remove();
                 $('#text_area_container').show();
                 setTimeout(function() {$('#txt_your_story').focus()},1);
