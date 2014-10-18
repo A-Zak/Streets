@@ -1,4 +1,4 @@
-    <header id="img_header" class="intro-header" style="background-image: url(http://maps.googleapis.com/maps/api/streetview?size=400x400&location=40.720032,-73.988354&fov=90&heading=235&pitch=10)">
+    <header id="img_header" class="intro-header" style="background-image: url(http://maps.googleapis.com/maps/api/streetview?size=400x400&location=40.720032,-73.988354&fov=90&heading=235&pitch=10); margin-bottom: 10px; ">
         <div class="container">
 
             <div class="row">
@@ -8,16 +8,16 @@
                     StreetsOf<span id="story-title-bold">TLV</div>
                 </div>
 
-                    <div class="site-heading">
+                    <div class="site-heading" style="padding: 75px 0">
                         <h1 id="story-title">13 Shocken St.</h1>
                         <!--<hr class="small">-->
                         <span id="story-subtitle" class="subheading thin">A story about love and darkness</span>
-                        <div id="story-map" style="margin-top: 70px">
+                        <div id="story-map" style="margin-top: 40px">
                             <a href="#">
                                 <img src="/public/css/img/map.png" style="width:24px; height: 35px"/>
 
                                 <div class="thin roboto" style="font-size: 15px">
-                                    View on Map
+                                    Explore Map
                                 </div>
                             </a>
                         </div>
@@ -30,31 +30,25 @@
 
     <!-- Main Content -->
     <div class="container">
-        <div class="row" style="margin-bottom: 30px">
-            <div class="col-md-6">
-                <a ng-click="toPreviousStory()">Previous</a>
-            </div>
-            <div class="col-md-6">
-                <a ng-click="toNextStory()">Next</a>
-            </div>
-        </div>
-        <div class="row">
+
+        <div class="row" style="margin-bottom:10px;">
             <div class="col-md-10 col-md-offset-2">
-                <span class="col-md-2"><a href="#"><img class="pointer" src="/public/css/img/arrow-left.png" style="width: 15px"/></a>
+                <span class="col-md-2"><a ng-click="toPreviousStory()"><img class="pointer" src="/public/css/img/arrow-left.png" style="width: 15px"/></a>
                 </span>
                     <span class="col-md-6" id="story-create">Written on {{story.storyCreateDate | date:'MMMM dd, yyyy'}}</span>
-                <span class="col-md-2 col-sm-offest-1 col-md-offset-1"><a href="#"><img class="pointer" src="/public/css/img/arrow-right.png" style="width: 15px"/></a>
+                <span class="col-md-2 col-sm-offest-1 col-md-offset-1"><a ng-click="toNextStory()" ><img class="pointer" src="/public/css/img/arrow-right.png" style="width: 15px"/></a>
                     </span>
             </div>
         </div>
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-             	<div>
-             		<i class="fa fa-map-marker"></i><a href="#">{{ story.location }}</a>
-             	</div>
+             	<!--<div>-->
+             		<!--<i class="fa fa-map-marker"></i><a href="#">{{ story.location }}</a>-->
+             	<!--</div>-->
              	<div id="story-text">
-             		<div ><i class="fa fa-align-justify"></i><a href="#">Story</a></div>
-             		{{ story.text }}
+             		<!--<div ><i class="fa fa-align-justify"></i><a href="#">Story</a></div>-->
+             		<span style='font-weight: bold'>{{ story.text|stFirstWord}}</span>
+                    <span>{{story.text|stAllButFirstWord}}</span>
              	</div>
              	
 
@@ -65,17 +59,28 @@
             	<!--<div><i class="fa fa-calendar"></i>{{ story.storyDate }}</div>-->
             	<!--<div><input id="txt_tags" type="text" value="{{ story.tags }}" disabled=disabled data-role="tagsinput"/></div>-->
             <!--</div>-->
+
         </div>
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-md-8 col-md-offset-2">
+                <hr>
+            </div>
+        </div>
+
+
     </div>
 
-    <hr>
 
     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-2">
+                    <div id="story-yours">
+                        What's your late night Tel Aviv story?
+                    </div>
                              	<div>
+
              		<a href="#"><span class="fa-stack fa-lg">
                                     <i class="fa fa-circle fa-stack-2x"></i>
                                     <i class="fa fa-plus fa-stack-1x fa-inverse"></i> 

@@ -15,7 +15,8 @@
 }
 
 div#story-text {
-    font-family:'Open Sans',sans-serif;font-size:20px;color:#404040
+    font-family:'Open Sans',sans-serif;font-size:20px;color:#404040;
+    margin-top: 20px;
 }
 
 div.site-heading h1#story-title {
@@ -55,3 +56,11 @@ div#story-map a img {
     text-align: center;
 }
 
+#story-yours {
+
+    font-family:'Open Sans',sans-serif;font-size:40px;color:#000000;
+    font-weight: 400;
+    text-shadow: 1px 1px 2px #404040;
+    line-height: 40px;
+    text-align: center;
+}
