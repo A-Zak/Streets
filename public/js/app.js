@@ -93,7 +93,9 @@ angular.module('streets', [
         }
     };
 })
-.config(function($routeProvider, RestangularProvider) {
+.config(function($routeProvider, RestangularProvider, $locationProvider) {
+  $locationProvider.html5Mode(true);
+
   $routeProvider
     .when('/', {
       controller:'StoryPageController',
@@ -113,6 +115,6 @@ angular.module('streets', [
       redirectTo:'/'
     });
 
-  RestangularProvider.setBaseUrl('/');
+  RestangularProvider.setBaseUrl('/api');
 });
 //.directive('')

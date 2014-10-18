@@ -1,5 +1,5 @@
 angular.module('streets')
-.controller('StoryPageController', function($scope, story, StoryService, $location, StoryCursorService, RandomCallToActionService) {
+.controller('StoryPageController', function($scope, story, StoryService, $location, StoryCursorService, RandomCallToActionService, SocialShareService) {
     $scope.story = story;
 
     // Pre-fetch next and prev
@@ -20,6 +20,14 @@ angular.module('streets')
     };
 
     $scope.call_to_action = RandomCallToActionService.getCallToAction();
+
+    $scope.launchTwitterShare = function() {
+        SocialShareService.twitterShareUrl($location.absUrl());
+    }
+
+    $scope.launchFacebookShare = function() {
+        SocialShareService.facebookShareUrl($location.absUrl());
+    }
 })
 .filter('stFirstWord', function() {
      return function(text) {
@@ -30,4 +38,39 @@ angular.module('streets')
      return function(text) {
             return text.split(' ').slice(1).join(' ');
      }
+})
+.service('SocialShareService', function($window) {
+    this.twitterShareUrl = function(urlToShare) {
+        var TEXT_FOR_TWEET = 'Look at this awesome story I read on StreetsTLV';
+
+        var width = 575,
+            height = 400,
+            left = ($(window).width() - width) / 2,
+            top = ($(window).height() - height) / 2,
+            opts = 'status=1' +
+                ',width=' + width +
+                ',height=' + height +
+                ',top=' + top +
+                ',left=' + left;
+
+        var url = 'https://twitter.com/intent/tweet?url='+encodeURIComponent(urlToShare)+'&text='+encodeURIComponent(TEXT_FOR_TWEET);
+        $window.open(url, '_blank', opts);
+    };
+
+    this.facebookShareUrl = function(urlToShare) {
+        var FACEBOOK_APP_ID = '543308622468738';
+
+        var width = 575,
+            height = 400,
+            left = ($(window).width() - width) / 2,
+            top = ($(window).height() - height) / 2,
+            opts = 'status=1' +
+                ',width=' + width +
+                ',height=' + height +
+                ',top=' + top +
+                ',left=' + left;
+
+        var url = 'https://www.facebook.com/dialog/share?app_id='+FACEBOOK_APP_ID+'&href='+encodeURIComponent(urlToShare)+'&display=popup&redirect_uri='+encodeURIComponent(urlToShare);
+        $window.open(url, '_blank', opts);
+    }
 });
