@@ -7,6 +7,8 @@ var stories = require('./DBSamples/all.json');
 
 var mdb = null;
 
+var mongoIP = process.env.MONGO ? process.env.MONGO : "127.0.0.1";
+
 var loadStories = function () { 
     var col = mdb.collection('stories');
     stories.map(function(story){
@@ -14,12 +16,9 @@ var loadStories = function () {
     });
 }
 
-
-mongo.connect('mongodb://127.0.0.1:27017/streets', function(err, db){
+mongo.connect('mongodb://' + mongoIP + ':27017/streets', function(err, db){
 	if (err) throw err;
 	mdb = db;
-    loadStories();
-
 })
 
 
