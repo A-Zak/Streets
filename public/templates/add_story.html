@@ -1,96 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>A story about love and darkness</title>
-
-    <link href="/public/css/bootstrap.min.css" rel="stylesheet">
-    	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-   	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
-	<script type="text/javascript" src="/public/js/bootstrap-tagsinput.min.js"></script>
-	<script type="text/javascript" src="/public/js/jquery.geocomplete.js"></script>
-
-	
-	
-    <!-- Bootstrap Core JavaScript -->
-    <script src="/public/js/bootstrap.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    
-    <!-- Custom CSS -->
-    <link href="/public/css/clean-blog.css" rel="stylesheet"> 
-    <link href="/public/css/style.css" rel="stylesheet">
-    <!-- Custom Fonts -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-
-	<script type="text/javascript">
-
-
-	</script>
-	
-	
-<style type="text/css"> 
+<style type="text/css">
     @import url(http://fonts.googleapis.com/earlyaccess/opensanshebrew.css);
-    
+
     html body {
     	background-color: #EEEEEE;
     }
-    
+
     html, body, input, span, div{
     	font-family: 'Open Sans Hebrew', serif;
     }
-    
-    
-    
+
+
+
     .pac-icon {
     	background-image: none;
     }
-    
+
     .site-heading input, .subheading{
     	color:black;
     }
-    
+
     h1 {
     	font-size:50px;
     }
-    
+
     .editable-title{
-    	background-color: rgba(1,1,1,0); 
-    	border:0px solid red; 
+    	background-color: rgba(1,1,1,0);
+    	border:0px solid red;
     }
-    
-    .black-overlay{ 
+
+    .black-overlay{
     	background-color:rgba(0,0,0,0.4);
     }
-    
+
     .date-field{
     	background-color:white;
     	text-align:center;
     	padding:1em;
     }
-    
+
     #btn_upload_photo_container{
     	text-align:center;
     	padding-bottom:2em;
     }
-    
+
     #lbl_your_story{
     	color: #D119ff;
     }
-    
+
     .btn-upload-photo {
     	background-color: rgba(0,0,0,0.5);
     	border:2px solid white;
     	display:none;
     }
-    
+
     .btn-upload-photo:hover, .btn-upload-photo:focus {
     	border:2px solid white;
     }
@@ -98,29 +60,26 @@
     	background-color:rgba(0,0,0,0);
     	border-width:0px;
     	line-height:1.5em;
-    	
+
     }
     #txt_your_story:focus,input:focus,button:focus {
     	border: none;
     	outline:none;
     }
-    
+
     #publish_button_container {
     	text-align:center;
     }
-    
-    #btn_publish { 
+
+    #btn_publish {
     	margin-top:3em;
     }
     </style>
-</head>
 
-<body>
-
-    <!-- Navigation 
+    <!-- Navigation
     <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
         <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display 
+            <!-- Brand and toggle get grouped for better mobile display
             <div class="navbar-header page-scroll">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
@@ -161,17 +120,17 @@
 
                     <div class="site-heading">
 		                <h1><input id="txt_geocode_address" type="text" class="editable-title" value="Street name?" style="text-align:center;"/></h1>
-		                <span class="subheading" id="txt_author_name">A story by <span id="txt_your_name" class='editable-title' contenteditable>your name</span></span> 
+		                <span class="subheading" id="txt_author_name">A story by <span id="txt_your_name" class='editable-title' contenteditable>your name</span></span>
                     </div>
-                  <div id="btn_upload_photo_container">		          	 
-		                
+                  <div id="btn_upload_photo_container">
+
 		                	<button type="button" id="btn-upload-photo" class="btn btn-default btn-lg btn-upload-photo">Upload your photo</button>
 		                	<iframe name="postframe" id="postframe" class="hidden" src="about:none" ></iframe>
 		                	  <form action="/image" enctype="multipart/form-data" method="post" id="frm_fileupload" target="postframe">
 		                		<input type="file" id="btn_upload" name="upload" style="visibility: hidden; width: 1px; height: 1px" />
 		                	</form>
 
-		                
+
 		  </div>
 
              </div>
@@ -184,10 +143,10 @@
     <!-- Main Content -->
     <div class="container">
         <div class="row">
-        	<div class="col-md-12" style="text-align:center;">	
+        	<div class="col-md-12" style="text-align:center;">
 	        	<button type="button" id="btn_inspire" class="btn btn-default btn-lg">Inspire me</button>
         	</div>
-        	
+
         	<div class="col-md-12">
         		<div id="your_story_container" style="text-align:center; display:none;">
 	        		<span id="lbl_your_story">Your story ...</span>
@@ -195,11 +154,11 @@
 	        	<div id="text_area_container" style="display:none;">
 	        		<div style="width:100%;" id="txt_your_story" contenteditable>Your story ...</div>
 	        	</div>
-	        	
+
 	        	<div id="publish_button_container">
 	        		<button type="button" id="btn_publish" class="btn btn-default btn-lg" style="display:none;">Publish your story</button>
 	        	</div>
-	        	
+
 	        	<div id="share_buttons_containers" style="display:none;">
 	        		<div id="story_over">Yeah! your story is live!</div>
 	        		<div>
@@ -214,7 +173,7 @@
 				</div>
 				<div>
         	</div>
-	</div>       
+	</div>
     </div>
 
     <hr>
@@ -226,8 +185,3 @@
             </div>
         </div>
     </footer>
-
-
-</body>
-
-</html>

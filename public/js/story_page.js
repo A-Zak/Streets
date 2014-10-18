@@ -1,5 +1,13 @@
+function isRTL(s){
+    var ltrChars    = 'A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02B8\u0300-\u0590\u0800-\u1FFF'+'\u2C00-\uFB1C\uFDFE-\uFE6F\uFEFD-\uFFFF',
+        rtlChars    = '\u0591-\u07FF\uFB1D-\uFDFD\uFE70-\uFEFC',
+        rtlDirCheck = new RegExp('^[^'+ltrChars+']*['+rtlChars+']');
+
+    return rtlDirCheck.test(s);
+};
+
 angular.module('streets')
-.controller('StoryPageController', function($scope, story, StoryService, $location, StoryCursorService, RandomCallToActionService, SocialShareService) {
+.controller('StoryPageController', function($interval, $timeout, $scope, story, StoryService, $location, StoryCursorService, RandomCallToActionService, SocialShareService) {
     $scope.story = story;
 
     // Pre-fetch next and prev
@@ -19,7 +27,22 @@ angular.module('streets')
         });
     };
 
+    // Replace call to action every 5s
     $scope.call_to_action = RandomCallToActionService.getCallToAction();
+
+    $interval(function() {
+        $('#story-yours').animate({opacity: 0},{
+            duration: 400,
+            complete: function() {
+                $scope.call_to_action = RandomCallToActionService.getCallToAction();
+
+                $timeout(function() {
+                    $('#story-yours').animate({opacity: 1}, 400);
+                })
+            }
+        })
+
+    },4000);
 
     $scope.launchTwitterShare = function() {
         SocialShareService.twitterShareUrl($location.absUrl());
@@ -41,7 +64,7 @@ angular.module('streets')
 })
 .service('SocialShareService', function($window) {
     this.twitterShareUrl = function(urlToShare) {
-        var TEXT_FOR_TWEET = 'Look at this awesome story I read on StreetsTLV';
+        var TEXT_FOR_TWEET = 'Look at this awesome story I read on Streets.City';
 
         var width = 575,
             height = 400,
