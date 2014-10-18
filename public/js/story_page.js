@@ -56,7 +56,7 @@ angular.module('streets')
 })
 .service('SocialShareService', function($window) {
     this.twitterShareUrl = function(urlToShare) {
-        var TEXT_FOR_TWEET = 'Look at this awesome story I read on StreetsTLV';
+        var TEXT_FOR_TWEET = 'Look at this awesome story I read on Streets.City';
 
         var width = 575,
             height = 400,

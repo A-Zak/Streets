@@ -34,9 +34,10 @@ var mdb = null;
 
 function generateOpenGraphTags(story) {
     var opengraph =
-        '<meta name="og:title" content="Streets.City - ' + story.location + ' by ' + story.authorName + '">'+
+        '<meta name="og:title" content="A story at ' + story.location + ' by ' + story.authorName + '">'+
         '<meta name="og:site_name" content="Streets.City">'+
-        '<meta name="og:description" content="A short story taking place in ' + story.location + ' by ' + story.authorName + ' written on ' + story.storyCreateDate +'">'+
+        //'<meta name="og:description" content="A short story taking place in ' + story.location + ' by ' + story.authorName + ' written on ' + story.storyCreateDate +'">'+
+        '<meta name="og:description" content="' + story.text.replace('"','&quot;') + '">'+
         '<meta name="og:image" content="'+story.imageUrl+'">'+
         '<meta name="fb:app_id" content="'+FACEBOOK_APP_ID+'">';
 
