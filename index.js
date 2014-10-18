@@ -3,13 +3,24 @@ var app = express();
 var mongo = require("mongodb").MongoClient;
 var ObjectID = require('mongodb').ObjectID;
 var bodyParser = require('body-parser');
+var stories = require('./DBSamples/all.json');
 
 var mdb = null;
 
-mongo.connect('mongodb://127.0.0.1:27017/streets', function(err, db){
+var mongoIP = process.env.MONGO ? process.env.MONGO : "127.0.0.1";
+
+var loadStories = function () { 
+    var col = mdb.collection('stories');
+    stories.map(function(story){
+        col.insert(story, function(err,col){});
+    });
+}
+
+mongo.connect('mongodb://' + mongoIP + ':27017/streets', function(err, db){
 	if (err) throw err;
 	mdb = db;
 })
+
 
 app.set('port', (process.env.PORT || 5555));
 app.use(bodyParser.json());
@@ -29,6 +40,7 @@ app.get('/story/:storyId', function(req,res){
         var objectId = ObjectID.createFromHexString(storyId);
     }catch(e){
         res.send(500, 'Error : please provide a valid storyId');
+        return;
     }
 
     console.log('Fetch story for story ID : ' + storyId);
@@ -52,7 +64,7 @@ app.get('/story', function(req,res){
 	var col = mdb.collection('stories');
 	col.count(function(err, count){
 		var randNum = Math.round(Math.random() * (count - 1)) + 1;
-		col.find().limit(-1).skip(randNum).nextObject(function(err,doc){
+		col.find().limit(-1).skip(randNum - 1).nextObject(function(err,doc){
 			res.send(doc);
 		});
 	});
@@ -83,13 +95,10 @@ app.get('/cleandb', function(req,res){
 });
 
 app.get('/loadStories', function(req,res){
-	var stories = require('./DBSamples/all.json');
-	var col = mdb.collection('stories');
-	stories.map(function(story){
-		col.insert(story, function(err,col){});
-	});
+	loadStories();
 	res.send("loaded");
 });
+
 
 app.listen(app.get('port'), function() {
 	console.log("running on localhost:" + app.get('port'));
