@@ -111,9 +111,12 @@
 					
 					console.log(json);
 					
-					$.post('/story',json)
+					$.post('/api/story',json)
 					.done(function() {
-						alert("Success");
+						$('#btn_publish').fadeOut(function() {
+							$('#share_buttons_containers').fadeIn();
+						});
+						
 					})
 					.fail(function() {
 						alert("Failure");
@@ -152,7 +155,6 @@
 				});
 				
 			     $("input:file").change(function (){
-			     	$('#frm_fileupload').attr("target", "postframe")
 			     	$("#frm_fileupload").submit();
 			     });
 			});
@@ -291,7 +293,7 @@
 		                
 		                	<button type="button" id="btn-upload-photo" class="btn btn-default btn-lg btn-upload-photo">Upload your photo</button>
 		                	<iframe name="postframe" id="postframe" class="hidden" src="about:none" ></iframe>
-		                	  <form action="/img" enctype="multipart/form-data" method="post" id="frm_fileupload">
+		                	  <form action="/image" enctype="multipart/form-data" method="post" id="frm_fileupload" target="postframe">
 		                		<input type="file" id="btn_upload" name="upload" style="visibility: hidden; width: 1px; height: 1px" />
 		                	</form>
 
@@ -322,6 +324,10 @@
 	        	
 	        	<div id="publish_button_container">
 	        		<button type="button" id="btn_publish" class="btn btn-default btn-lg" style="display:none;">Publish your story</button>
+	        	</div>
+	        	
+	        	<div id="share_buttons_containers" style="display:none;">
+	        		Yeah! your story is live!
 	        	</div>
         	</div>
 	</div>       

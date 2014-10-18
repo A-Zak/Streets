@@ -97,7 +97,8 @@ app.get('/api/story', function(req,res){
 
 app.post('/image', function(req,res){
 	var newId = uuid.v4();
-	var nameParts = req.files.fieldname.name.split(".");
+	console.log(req);
+	var nameParts = req.files.upload.name.split(".");
 	var extention = nameParts[nameParts.length -1];
 	var filename = newId + "." + extention;
 	res.send(filename);
