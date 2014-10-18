@@ -129,6 +129,11 @@ app.get('/add_story', function(req,res,next) {
 	res.sendFile(__dirname+'/public/add_story.html');
 });
 
+app.get('/terms', function(req,res,next) {
+    res.sendFile(__dirname+'/public/terms.html');
+});
+
+
 
 app.get('/api/story', function(req,res){
 	var col = mdb.collection('stories');
