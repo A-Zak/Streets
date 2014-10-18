@@ -11,33 +11,41 @@
     text-align: center;
     font-weight: 300;
     letter-spacing: 1px;
-    margin-top: 30px;
+    margin-top: 40px;
+
 }
+
 
 div#story-text {
-    font-family:'Open Sans',sans-serif;font-size:20px;color:#404040;
+    font-family:'Open Sans',sans-serif;font-size:12pt;color:#404040;
     margin-top: 20px;
+    width: 785px;
+    text-align: justify;
+    line-height: 23pt;
+    margin-top: 53px;
 }
 
-div.site-heading h1#story-title {
-    font-family:'Open Sans',sans-serif;font-size:50px;color:#ffffff;
+div.site-heading h1#story-heading {
+    font-family:'Open Sans',sans-serif;font-size:49px;color:#ffffff;
     font-weight: 700;
     text-shadow: 2px 2px 3px #404040;
+    text-align: center;
+    margin-top: 70px;
 }
 
-div.site-heading span#story-subtitle {
-    font-family:'Roboto',sans-serif;font-size:20px;color:#cccccc;
-    font-weight: 100;
+div.site-heading #story-subtitle {
+    font-family:'Open Sans',sans-serif;font-size:15px;color:#cccccc;
+    font-weight: 300;
     letter-spacing: 1px;
-    text-shadow: 1px 1px 2px #cccccc;
+    text-align: center;
 
 }
 
 .thin {
     font-weight: 100;
     letter-spacing: 1px;
-    text-shadow: 1px 1px 2px #cccccc;
-    font-size: 20px;
+    font-size: 10px;
+
 }
 .roboto {
     font-family:'Roboto',sans-serif;color:#cccccc;
@@ -54,6 +62,7 @@ div#story-map a img {
 
 #story-create {
     text-align: center;
+    font-family:'Open Sans',sans-serif;font-size: 11pt; color:#000000;
 }
 
 #story-yours {

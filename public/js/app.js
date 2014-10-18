@@ -11,6 +11,8 @@ function isRTL(s){
 angular.module('streets', [
     'ngRoute', 'restangular'
 ])
+
+.constant('HOMEPAGE_STORY_ID', '54421f0feb3085e9c4886f62')
 .service('StoryCursorService', function() {
     var storyCursor = 0;
 

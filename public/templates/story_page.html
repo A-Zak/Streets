@@ -1,4 +1,5 @@
-    <header id="img_header" class="intro-header" style="background-image: url(http://maps.googleapis.com/maps/api/streetview?size=400x400&location=40.720032,-73.988354&fov=90&heading=235&pitch=10); margin-bottom: 10px; ">
+    <header id="img_header" class="intro-header"  style="background-repeat: no-repeat; background-size: cover;  backgroun-position: center; background-color: black; margin-bottom: 0px" >
+        <!-- ng-style="{'background-image': 'url('+story.imageUrl+')'}" -->
         <div class="container">
 
             <div class="row">
@@ -8,15 +9,15 @@
                     StreetsOf<span id="story-title-bold">TLV</div>
                 </div>
 
-                    <div class="site-heading" style="padding: 75px 0">
-                        <h1 id="story-title">13 Shocken St.</h1>
+                    <div class="site-heading" style="padding: 40px 0; text-align:center;">
+                        <h1 id="story-heading">13 Shocken St.</h1>
                         <!--<hr class="small">-->
-                        <span id="story-subtitle" class="subheading thin">A story about love and darkness</span>
+                        <div id="story-subtitle" class="thin">A story by Ron Segall</div>
                         <div id="story-map" style="margin-top: 40px">
                             <a href="#">
                                 <img src="/public/css/img/map.png" style="width:24px; height: 35px"/>
 
-                                <div class="thin roboto" style="font-size: 15px">
+                                <div class="thin roboto" style="font-size: 11px">
                                     Explore Map
                                 </div>
                             </a>
@@ -28,21 +29,24 @@
         </div>
     </header>
 
-    <!-- Main Content -->
-    <div class="container">
         <a ng-click="launchTwitterShare()">Twitter</a>
         <a ng-click="launchFacebookShare()">Facebook</a>
 
-        <div class="row" style="margin-bottom:10px;">
-            <div class="col-md-10 col-md-offset-2">
+        <div class="row" style="background-color: #ffffff">
+            <div class="col-md-10 col-md-offset-2" style="line-height: 54px">
                 <span class="col-md-2"><a ng-click="toPreviousStory()"><img class="pointer" src="/public/css/img/arrow-left.png" style="width: 15px"/></a>
                 </span>
                     <span class="col-md-6" id="story-create">Written on {{story.storyCreateDate | date:'MMMM dd, yyyy'}}</span>
-                <span class="col-md-2 col-sm-offest-1 col-md-offset-1"><a ng-click="toNextStory()" ><img class="pointer" src="/public/css/img/arrow-right.png" style="width: 15px"/></a>
+                <span class="col-md-2 col-md-offest-2"><a ng-click="toNextStory()" ><img class="pointer" src="/public/css/img/arrow-right.png" style="width: 15px"/></a>
                     </span>
             </div>
         </div>
-        <div class="row">
+
+<div style="background-color: #fafafa; width: 100%;">
+    <!-- Main Content -->
+    <div class="container" >
+
+        <div class="row" >
             <div class="col-md-8 col-md-offset-2">
              	<!--<div>-->
              		<!--<i class="fa fa-map-marker"></i><a href="#">{{ story.location }}</a>-->
@@ -69,13 +73,13 @@
             </div>
         </div>
 
-
     </div>
 
-
+</div>
     <!-- Footer -->
-    <footer>
+    <footer style="background-color: #fafafa">
         <div class="container">
+
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-2">
                     <div id="story-yours">
@@ -91,4 +95,5 @@
              	</div>
                 </div>
             </div>
+
         </div>
