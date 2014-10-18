@@ -63,6 +63,7 @@ var OPENGRAPH_TAGS_MAIN_PAGE =
     '<meta name="fb:app_id" content="'+FACEBOOK_APP_ID+'">';
 
 app.set('port', (process.env.PORT || 5555));
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json());
 app.use(busboy());
 app.use('/public', express.static(__dirname + '/public'));
@@ -70,6 +71,12 @@ app.get('/', function(req, res){
     var openGraphTags = OPENGRAPH_TAGS_MAIN_PAGE;
 
     renderAppHtml(openGraphTags, function(page) {
+        res.send(200, page);
+    });
+});
+
+app.get('/about', function(req, res){
+    renderAppHtml('', function(page) {
         res.send(200, page);
     });
 });
@@ -149,6 +156,7 @@ app.get('/api/story', function(req,res){
 });
 
 app.get('/image/:filename', function(req,res){
+	console.log(req.params.filename);
 	bucket.createReadStream(req.params.filename).pipe(res);
 });
 
@@ -159,7 +167,7 @@ app.post('/image', function(req,res){
 		var filename = "/image/" + newId + "." + mimetype.split("/")[1];
 		file.pipe(bucket.createWriteStream(filename))
 			.on('complete', function(){
-				res.send(filename);
+				res.send(path);
 			})
 			.on('error', function(e){
 				console.log("error",e);
@@ -186,6 +194,9 @@ app.post('/api/story', function(req,res){
     console.log('Adding new story');
     var col = mdb.collection('stories');
     var story = req.body;
+    
+    story.storyCreateDate = new Date();
+    
     //TODO: add some validations!!!
     col.insert(story, function(err, records){
         if(err){
