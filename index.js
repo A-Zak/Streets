@@ -22,7 +22,6 @@ mongo.connect('mongodb://' + mongoIP + ':27017/streets', function(err, db){
 })
 
 
-
 app.set('port', (process.env.PORT || 5555));
 app.use(bodyParser.json());
 app.use('/public', express.static(__dirname + '/public'));
@@ -60,7 +59,7 @@ app.get('/story', function(req,res){
 	var col = mdb.collection('stories');
 	col.count(function(err, count){
 		var randNum = Math.round(Math.random() * (count - 1)) + 1;
-		col.find().limit(-1).skip(randNum).nextObject(function(err,doc){
+		col.find().limit(-1).skip(randNum - 1).nextObject(function(err,doc){
 			res.send(doc);
 		});
 	});
