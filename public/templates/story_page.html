@@ -45,9 +45,6 @@
         </div>
     </header>
 
-        <!--<a ng-click="launchTwitterShare()">Twitter</a>-->
-        <!--<a ng-click="launchFacebookShare()">Facebook</a>-->
-
         <div class="row" style="background-color: #ffffff">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-2" style="line-height: 54px;">
                 <span class="col-md-2 col-md-offset-1"><a ng-click="toPreviousStory()"><img class="pointer" src="/public/css/img/arrow-left.png" style="width: 15px"/></a>
@@ -86,8 +83,8 @@
         <div class="row" style="margin-top:80px;">
             <div class="col-md-8 col-md-offset-2" >
                 <div style="float:left">
-                <a><img class="share-button" src="/public/css/img/fb_button_off.png" /></a>
-                <a style="margin-left: 10px"><img class="share-button" src="/public/css/img/tw_button_off.png"/></a>
+                <a ng-click="launchFacebookShare()"><img class="share-button" src="/public/css/img/fb_button_off.png" /></a>
+                <a style="margin-left: 10px" ng-click="launchTwitterShare()"><img class="share-button" src="/public/css/img/tw_button_off.png"/></a>
                     </div>
                 <form id="story-form" >
                     <input id="story-email" type="text" placeholder="Your Email"/>

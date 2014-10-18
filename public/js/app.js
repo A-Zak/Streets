@@ -111,6 +111,10 @@ angular.module('streets', [
           'story': function($route, StoryService) { return StoryService.getOneStory($route.current.params.storyId); }
       }
     })
+    .when('/add_story', {
+        templateUrl: TEMPLATES_DIR + 'add_story.html',
+
+    })
     .otherwise({
       redirectTo:'/'
     });

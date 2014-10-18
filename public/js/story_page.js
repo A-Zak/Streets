@@ -1,5 +1,5 @@
 angular.module('streets')
-.controller('StoryPageController', function($scope, story, StoryService, $location, StoryCursorService, RandomCallToActionService, SocialShareService) {
+.controller('StoryPageController', function($interval, $timeout, $scope, story, StoryService, $location, StoryCursorService, RandomCallToActionService, SocialShareService) {
     $scope.story = story;
 
     // Pre-fetch next and prev
@@ -19,7 +19,22 @@ angular.module('streets')
         });
     };
 
+    // Replace call to action every 5s
     $scope.call_to_action = RandomCallToActionService.getCallToAction();
+
+    $interval(function() {
+        $('#story-yours').animate({opacity: 0},{
+            duration: 400,
+            complete: function() {
+                $scope.call_to_action = RandomCallToActionService.getCallToAction();
+
+                $timeout(function() {
+                    $('#story-yours').animate({opacity: 1}, 400);
+                })
+            }
+        })
+
+    },4000);
 
     $scope.launchTwitterShare = function() {
         SocialShareService.twitterShareUrl($location.absUrl());
@@ -41,7 +56,7 @@ angular.module('streets')
 })
 .service('SocialShareService', function($window) {
     this.twitterShareUrl = function(urlToShare) {
-        var TEXT_FOR_TWEET = 'Look at this awesome story I read on StreetsTLV';
+        var TEXT_FOR_TWEET = 'Look at this awesome story I read on Streets.City';
 
         var width = 575,
             height = 400,
