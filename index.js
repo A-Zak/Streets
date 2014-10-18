@@ -144,8 +144,9 @@ app.get('/api/story', function(req,res){
 });
 
 app.post('/image', function(req,res){
+	req.pipe(req.busboy);
+	
 	req.busboy.on('file', function(fieldname, file, filename, encoding, mimetype){
-
 		var newId = uuid.v4();
 		console.log(encoding, mimetype);
 		var filename = newId + "." + "tmp.jpg";
