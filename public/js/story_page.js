@@ -70,7 +70,7 @@ angular.module('streets')
                 ',top=' + top +
                 ',left=' + left;
 
-        var url = 'https://www.facebook.com/dialog/share?app_id='+FACEBOOK_APP_ID+'&href='+encodeURIComponent(urlToShare)+'&display=popup';
+        var url = 'https://www.facebook.com/dialog/share?app_id='+FACEBOOK_APP_ID+'&href='+encodeURIComponent(urlToShare)+'&display=popup&redirect_uri='+encodeURIComponent(urlToShare);
         $window.open(url, '_blank', opts);
     }
 });
