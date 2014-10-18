@@ -59,8 +59,7 @@ app.get('/story', function(req,res){
 	var col = mdb.collection('stories');
 	col.count(function(err, count){
 		var randNum = Math.round(Math.random() * (count - 1)) + 1;
-        console.log(randNum, count);
-		col.find().limit(-1).skip(randNum).nextObject(function(err,doc){
+		col.find().limit(-1).skip(randNum - 1).nextObject(function(err,doc){
 			res.send(doc);
 		});
 	});

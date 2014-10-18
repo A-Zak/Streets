@@ -28,6 +28,16 @@ angular.module('streets', [
     this.curr = function() {
         return storyCursor;
     };
+
+    this.peekNext = function() {
+        return storyCursor + 1;
+    }
+
+    this.peekPrev = function() {
+        return storyCursor - 1;
+    }
+
+
 })
 .service('StoryService', function(Restangular, $q) {
     var storyCache = {};
