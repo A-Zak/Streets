@@ -31,13 +31,16 @@
     <!-- Main Content -->
     <div class="container">
         <div class="row">
-            <a href="#"><img class="pointer" src="/public/css/img/arrow-left.png" style="width: 15px"/></a>
-
-                <span id="story-create">Written on {{story.storyCreateDate | date:'MMMM dd, yyyy'}}</span>
-            <a href="#"><img class="pointer" src="/public/css/img/arrow-right.png" style="width: 15px"/></a>
+            <div class="col-md-10 col-md-offset-2">
+                <span class="col-md-2"><a href="#"><img class="pointer" src="/public/css/img/arrow-left.png" style="width: 15px"/></a>
+                </span>
+                    <span class="col-md-6" id="story-create">Written on {{story.storyCreateDate | date:'MMMM dd, yyyy'}}</span>
+                <span class="col-md-2 col-sm-offest-1 col-md-offset-1"><a href="#"><img class="pointer" src="/public/css/img/arrow-right.png" style="width: 15px"/></a>
+                    </span>
+            </div>
         </div>
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-8 col-md-offset-2">
              	<div>
              		<i class="fa fa-map-marker"></i><a href="#">{{ story.location }}</a>
              	</div>
@@ -49,11 +52,11 @@
 
             </div>   
             
-            <div class="col-md-4">
-            	<div><i class="fa fa-user"></i>{{ story.authorName }}</div>
-            	<div><i class="fa fa-calendar"></i>{{ story.storyDate }}</div>
-            	<div><input id="txt_tags" type="text" value="{{ story.tags }}" disabled=disabled data-role="tagsinput"/></div>
-            </div>
+            <!--<div class="col-md-4">-->
+            	<!--<div><i class="fa fa-user"></i>{{ story.authorName }}</div>-->
+            	<!--<div><i class="fa fa-calendar"></i>{{ story.storyDate }}</div>-->
+            	<!--<div><input id="txt_tags" type="text" value="{{ story.tags }}" disabled=disabled data-role="tagsinput"/></div>-->
+            <!--</div>-->
         </div>
     </div>
 

@@ -50,3 +50,8 @@ div.site-heading span#story-subtitle {
 div#story-map a img {
     cursor: pointer;
 }
+
+#story-create {
+    text-align: center;
+}
+
