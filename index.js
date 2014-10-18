@@ -3,13 +3,26 @@ var app = express();
 var mongo = require("mongodb").MongoClient;
 var ObjectID = require('mongodb').ObjectID;
 var bodyParser = require('body-parser');
+var stories = require('./DBSamples/all.json');
 
 var mdb = null;
+
+var loadStories = function () { 
+    var col = mdb.collection('stories');
+    stories.map(function(story){
+        col.insert(story, function(err,col){});
+    });
+}
+
 
 mongo.connect('mongodb://127.0.0.1:27017/streets', function(err, db){
 	if (err) throw err;
 	mdb = db;
+    loadStories();
+
 })
+
+
 
 app.set('port', (process.env.PORT || 5555));
 app.use(bodyParser.json());
@@ -79,13 +92,10 @@ app.get('/cleandb', function(req,res){
 });
 
 app.get('/loadStories', function(req,res){
-	var stories = require('./DBSamples/all.json');
-	var col = mdb.collection('stories');
-	stories.map(function(story){
-		col.insert(story, function(err,col){});
-	});
+	loadStories();
 	res.send("loaded");
 });
+
 
 app.listen(app.get('port'), function() {
 	console.log("running on localhost:" + app.get('port'));
