@@ -142,16 +142,25 @@ app.get('/api/story', function(req,res){
 	});
 });
 
-app.post('/image', function(req,res){
-	req.busboy.on('file', function(fieldname, file, filename, encoding, mimetype){
+app.get('/image/:filename', function(req,res){
+	bucket.createReadStream(req.params.filename).pipe(res);
+});
 
+app.post('/image', function(req,res){
+	req.pipe(req.busboy);
+	req.busboy.on('file', function(fieldname, file, filename, encoding, mimetype){
 		var newId = uuid.v4();
 		console.log(encoding, mimetype);
-		var filename = newId + "." + "tmp.jpg";
-		res.send(filename);
+		var filename = "/image/" + newId + "." + mimetype.split("/")[1];
+		file.pipe(bucket.createWriteStream(filename))
+			.on('complete', function(){
+				res.send(filename);
+			})
+			.on('error', function(e){
+				console.log("error",e);
+				res.send(401, e);
+			});
 	});
-	//bucket.createWriteStream(filename)
-	//
 });
 
 var FIRST_STORY_MAGIC_ID = 'first_story';
