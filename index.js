@@ -6,7 +6,9 @@ var bodyParser = require('body-parser');
 
 var mdb = null;
 
-mongo.connect('mongodb://127.0.0.1:27017/streets', function(err, db){
+var mongoIP = process.env.MONGO ? process.env.MONGO : "127.0.0.1";
+
+mongo.connect('mongodb://' + mongoIP + ':27017/streets', function(err, db){
 	if (err) throw err;
 	mdb = db;
 })
