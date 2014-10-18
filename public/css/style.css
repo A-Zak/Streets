@@ -19,7 +19,6 @@
 div#story-text {
     font-family:'Open Sans',sans-serif;font-size:12pt;color:#404040;
     margin-top: 20px;
-    width: 785px;
     text-align: justify;
     line-height: 23pt;
     margin-top: 53px;
@@ -34,7 +33,7 @@ div.site-heading h1#story-heading {
 }
 
 div.site-heading #story-subtitle {
-    font-family:'Open Sans',sans-serif;font-size:15px;color:#cccccc;
+    font-family:'Open Sans',sans-serif;font-size:15px;color:#ffffff;
     font-weight: 300;
     letter-spacing: 1px;
     text-align: center;
@@ -48,8 +47,8 @@ div.site-heading #story-subtitle {
 
 }
 .roboto {
-    font-family:'Roboto',sans-serif;color:#cccccc;
-
+    font-family:'Roboto',sans-serif;color:#ffffff;
+    margin-top: 5px;
 }
 
 .pointer {
