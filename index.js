@@ -155,7 +155,6 @@ app.post('/image', function(req,res){
 	req.pipe(req.busboy);
 	req.busboy.on('file', function(fieldname, file, filename, encoding, mimetype){
 		var newId = uuid.v4();
-		console.log(encoding, mimetype);
 		var filename = "/image/" + newId + "." + mimetype.split("/")[1];
 		file.pipe(bucket.createWriteStream(filename))
 			.on('complete', function(){
