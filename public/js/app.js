@@ -11,7 +11,8 @@ function isRTL(s){
 angular.module('streets', [
     'ngRoute', 'restangular'
 ])
-.constant('HOMEPAGE_STORY_ID', '5442471af357ff8b14cfc104')
+
+.constant('HOMEPAGE_STORY_ID', '54421f0feb3085e9c4886f62')
 .service('StoryCursorService', function() {
     var storyCursor = 0;
 
@@ -39,6 +40,11 @@ angular.module('streets', [
 })
 .service('StoryService', function(Restangular, $q) {
     var storyCache = {};
+
+    // getFirstStory returns a promise
+    this.getFirstStory = function() {
+        return Restangular.one('firstStory').get();
+    };
 
     // getOneStory returns a promise
     this.getOneStory = function(storyId) {
@@ -87,13 +93,15 @@ angular.module('streets', [
         }
     };
 })
-.config(function($routeProvider, RestangularProvider) {
+.config(function($routeProvider, RestangularProvider, $locationProvider) {
+  $locationProvider.html5Mode(true);
+
   $routeProvider
     .when('/', {
       controller:'StoryPageController',
       templateUrl: TEMPLATES_DIR + 'story_page.html',
       resolve: {
-          'story': function(HOMEPAGE_STORY_ID, StoryService) { return StoryService.getOneStory(HOMEPAGE_STORY_ID); }
+          'story': function(StoryService) { return StoryService.getFirstStory(); }
       }
     })
     .when('/story/:storyId', {
@@ -107,6 +115,6 @@ angular.module('streets', [
       redirectTo:'/'
     });
 
-  RestangularProvider.setBaseUrl('/');
+  RestangularProvider.setBaseUrl('/api');
 });
 //.directive('')

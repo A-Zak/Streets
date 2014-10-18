@@ -4,6 +4,25 @@ var mongo = require("mongodb").MongoClient;
 var ObjectID = require('mongodb').ObjectID;
 var bodyParser = require('body-parser');
 var stories = require('./DBSamples/all.json');
+var gcloud = require('gcloud');
+var uuid = require('node-uuid');
+
+var bucket;
+var projectId = 'kiddyup-web-001';
+var bucketName = 'streets';
+
+if(process.env.MONGO){
+	bucket = gcloud.storage.bucket({
+		  projectId: projectId,
+	         bucketName: bucketName
+	});
+} else {
+	bucket = gcloud.storage.bucket({
+		  projectId: projectId,
+	         keyFilename: __dirname + '/gcloud.json',
+	         bucketName: bucketName
+	});
+}
 
 var mdb = null;
 
@@ -15,11 +34,16 @@ app.get('/', function(req, res){
 	res.sendFile(__dirname+'/public/app.html');
 });
 
+app.get('/story/:storyId', function(req, res){
+	res.sendFile(__dirname+'/public/app.html');
+});
+
+
 
 /**
  * Fetch story by ID
  */
-app.get('/story/:storyId', function(req,res){
+app.get('/api/story/:storyId', function(req,res){
     var col = mdb.collection('stories');
     var storyId = req.params.storyId;
     try{
@@ -46,7 +70,7 @@ app.get('/add_story', function(req,res,next) {
 });
 
 
-app.get('/story', function(req,res){
+app.get('/api/story', function(req,res){
 	var col = mdb.collection('stories');
 	col.count(function(err, count){
 		var randNum = Math.round(Math.random() * (count - 1)) + 1;
@@ -56,8 +80,31 @@ app.get('/story', function(req,res){
 	});
 });
 
+app.post('/image', function(req,res){
+	var newId = uuid.v4();
+	var nameParts = req.files.fieldname.name.split(".");
+	var extention = nameParts[nameParts.length -1];
+	var filename = newId + "." + extention;
+	res.send(filename);
+	//bucket.createWriteStream(filename)
+	//
+});
 
-app.post('/story', function(req,res){
+var FIRST_STORY_MAGIC_ID = 'first_story';
+
+app.get('/api/firstStory', function(req,res){
+	var col = mdb.collection('stories');
+	col.findOne({'_id':FIRST_STORY_MAGIC_ID}, function(err,doc) {
+        if(err){
+            console.error('Error find story by storyId : %s. Error : %s.',storyId, err);
+        } else {
+            res.send(doc);
+        }
+    })
+});
+
+
+app.post('/api/story', function(req,res){
     console.log('Adding new story');
     var col = mdb.collection('stories');
     var story = req.body;

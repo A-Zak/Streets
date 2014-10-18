@@ -21,9 +21,11 @@
   },
   "homepage": "https://github.com/A-Zak/Streets",
   "dependencies": {
+    "body-parser": "~1.0.1",
     "express": "^4.9.7",
+    "gcloud": "^0.8.1",
     "mongodb": "^1.4.19",
-    "body-parser": "~1.0.1"
+    "node-uuid": "^1.4.1"
   },
   "license": "GPL v2.0"
 }
