@@ -46,7 +46,6 @@ mongo.connect('mongodb://' + mongoIP + ':27017/streets', function(err, db){
 })
 
 
-
 app.set('port', (process.env.PORT || 5555));
 app.use(bodyParser.json());
 app.use('/public', express.static(__dirname + '/public'));
@@ -54,11 +53,16 @@ app.get('/', function(req, res){
 	res.sendFile(__dirname+'/public/app.html');
 });
 
+app.get('/story/:storyId', function(req, res){
+	res.sendFile(__dirname+'/public/app.html');
+});
+
+
 
 /**
  * Fetch story by ID
  */
-app.get('/story/:storyId', function(req,res){
+app.get('/api/story/:storyId', function(req,res){
     var col = mdb.collection('stories');
     var storyId = req.params.storyId;
     try{
@@ -80,7 +84,12 @@ app.get('/story/:storyId', function(req,res){
 });
 
 
-app.get('/story', function(req,res){
+app.get('/add_story', function(req,res,next) {
+	res.sendFile(__dirname+'/public/add_story.html');
+});
+
+
+app.get('/api/story', function(req,res){
 	var col = mdb.collection('stories');
 	col.count(function(err, count){
 		var randNum = Math.round(Math.random() * (count - 1)) + 1;
@@ -97,10 +106,24 @@ app.post('/image', function(req,res){
 	var filename = newId + "." + extention;
 	res.send(filename);
 	//bucket.createWriteStream(filename)
+	//
+});
+
+var FIRST_STORY_MAGIC_ID = 'first_story';
+
+app.get('/api/firstStory', function(req,res){
+	var col = mdb.collection('stories');
+	col.findOne({'_id':FIRST_STORY_MAGIC_ID}, function(err,doc) {
+        if(err){
+            console.error('Error find story by storyId : %s. Error : %s.',storyId, err);
+        } else {
+            res.send(doc);
+        }
+    })
 });
 
 
-app.post('/story', function(req,res){
+app.post('/api/story', function(req,res){
     console.log('Adding new story');
     var col = mdb.collection('stories');
     var story = req.body;
