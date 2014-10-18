@@ -1,5 +1,5 @@
 angular.module('streets')
-.controller('StoryPageController', function($scope, story, StoryService, $location, StoryCursorService) {
+.controller('StoryPageController', function($scope, story, StoryService, $location, StoryCursorService, RandomCallToActionService) {
     $scope.story = story;
 
     // Pre-fetch next and prev
@@ -18,9 +18,8 @@ angular.module('streets')
             $location.path('/story/'+story._id);
         });
     };
-    $scope.first_word = function() {
-        return story.split(' ')[0];
-    };
+
+    $scope.call_to_action = RandomCallToActionService.getCallToAction();
 })
 .filter('stFirstWord', function() {
      return function(text) {

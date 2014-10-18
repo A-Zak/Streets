@@ -70,6 +70,19 @@ app.get('/story', function(req,res){
 	});
 });
 
+var FIRST_STORY_MAGIC_ID = 'first_story';
+
+app.get('/firstStory', function(req,res){
+	var col = mdb.collection('stories');
+	col.findOne({'_id':FIRST_STORY_MAGIC_ID}, function(err,doc) {
+        if(err){
+            console.error('Error find story by storyId : %s. Error : %s.',storyId, err);
+        } else {
+            res.send(doc);
+        }
+    })
+});
+
 
 app.post('/story', function(req,res){
     console.log('Adding new story');
