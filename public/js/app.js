@@ -1,7 +1,8 @@
 var TEMPLATES_DIR = '/public/templates/';
 
 angular.module('streets', [
-    'ngRoute', 'restangular'
+    'ngRoute', 'restangular',
+    'angulartics', 'angulartics.google.analytics'
 ])
 
 .constant('HOMEPAGE_STORY_ID', '54421f0feb3085e9c4886f62')
