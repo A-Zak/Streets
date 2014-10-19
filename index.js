@@ -1,4 +1,4 @@
-var express = require('express');
+﻿var express = require('express');
 var app = express();
 var mongo = require("mongodb").MongoClient;
 var ObjectID = require('mongodb').ObjectID;
@@ -58,7 +58,7 @@ function renderAppHtml(opengraphTags, callback) {
 var OPENGRAPH_TAGS_MAIN_PAGE =
     '<meta name="og:title" content="Streets.City - Welcome">'+
     '<meta name="og:site_name" content="Streets.City">'+
-    '<meta name="og:description" content="I AM A DESCRIPTION - CHANGE MEEEEEE">'+
+    '<meta name="og:description" content="There are so many stories to be told. Stories of kisses and parties and excitement and love. Stories of people. Real people. People that live in the streets of Tel Aviv. We\'re ready with the new platform. Ready to hear YOUR stories. Share it with us, so we can remember how awesome this city is. Do it now. ">'+
     //'<meta name="og:image" content="I AM AN IMAGE - CHANGE MEEEEEE">'+
     '<meta name="fb:app_id" content="'+FACEBOOK_APP_ID+'">';
 
