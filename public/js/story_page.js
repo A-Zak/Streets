@@ -21,13 +21,18 @@ angular.module('streets')
     // Actions for next and prev
     $scope.toPreviousStory = function() {
         StoryService.getStoryByOrderIndex(StoryCursorService.prev()).then(function(story) {
-            $location.path('/story/'+story._id);
+            $('body').fadeOut(function() {
+            	$location.path('/story/'+story._id);
+            });
         });
     };
 
     $scope.toNextStory = function() {
         StoryService.getStoryByOrderIndex(StoryCursorService.next()).then(function(story) {
-            $location.path('/story/'+story._id);
+            $('body').fadeOut(function() {
+            	$location.path('/story/'+story._id);
+            });
+            
         });
     };
 
@@ -47,6 +52,12 @@ angular.module('streets')
         })
 
     },4000);
+
+
+    //Fade in between stories
+    $scope.$on('$routeChangeSuccess', function(scope, next, current){
+        $('body').fadeIn();
+    });
 
     $scope.$on('$destroy', function() { $interval.cancel(anim); });
 
