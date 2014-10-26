@@ -24,7 +24,7 @@
     "body-parser": "~1.0.1",
     "connect-busboy": "0.0.2",
     "express": "^4.9.7",
-    "gcloud": "^0.8.1",
+    "gcloud": "^0.9",
     "mongodb": "^1.4.19",
     "node-uuid": "^1.4.1"
   },

@@ -18,16 +18,14 @@ var projectId = 'kiddyup-web-001';
 var bucketName = 'streets';
 
 if(process.env.MONGO){
-	bucket = gcloud.storage.bucket({
+	bucket = gcloud.storage({
 		  projectId: projectId,
-	         bucketName: bucketName
-	});
+	}).bucket(bucketName);
 } else {
-	bucket = gcloud.storage.bucket({
+	bucket = gcloud.storage({
 		  projectId: projectId,
 	         keyFilename: __dirname + '/gcloud.json',
-	         bucketName: bucketName
-	});
+	}).bucket(bucketName);
 }
 
 var mdb = null;
@@ -168,16 +166,16 @@ app.get('/api/story', function(req,res){
 });
 
 app.get('/image/:filename', function(req,res){
-	console.log(req.params.filename);
-	bucket.createReadStream(req.params.filename).pipe(res);
+	bucket.file(req.params.filename).createReadStream().pipe(res);
 });
 
 app.post('/image', function(req,res){
 	req.pipe(req.busboy);
 	req.busboy.on('file', function(fieldname, file, filename, encoding, mimetype){
 		var newId = uuid.v4();
-		var filename = "/image/" + newId + "." + mimetype.split("/")[1];
-		file.pipe(bucket.createWriteStream(filename))
+		var filename = newId + "." + mimetype.split("/")[1];
+		var path = "/image/" + filename;
+		file.pipe(bucket.file(filename).createWriteStream())
 			.on('complete', function(){
 				res.send(path);
 			})
