@@ -17,16 +17,16 @@ var bucket;
 var projectId = 'kiddyup-web-001';
 var bucketName = 'streets';
 
-if(process.env.MONGO){
-	bucket = gcloud.storage({
-		  projectId: projectId,
-	}).bucket(bucketName);
-} else {
+// if(process.env.MONGO){
+// 	bucket = gcloud.storage({
+// 		  projectId: projectId,
+// 	}).bucket(bucketName);
+// } else {
 	bucket = gcloud.storage({
 		  projectId: projectId,
 	         keyFilename: __dirname + '/gcloud.json',
 	}).bucket(bucketName);
-}
+// }
 
 var mdb = null;
 
