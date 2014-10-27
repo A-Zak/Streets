@@ -69,25 +69,25 @@ app.get('/', function(req, res){
     var openGraphTags = OPENGRAPH_TAGS_MAIN_PAGE;
 
     renderAppHtml(openGraphTags, function(page) {
-        res.send(200, page);
+        res.status(200).send(page);
     });
 });
 
 app.get('/about', function(req, res){
     renderAppHtml('', function(page) {
-        res.send(200, page);
+        res.status(200).send(page);
     });
 });
 
 app.get('/add_story', function(req, res){
     renderAppHtml('', function(page) {
-        res.send(200, page);
+        res.status(200).send(page);
     });
 });
 
 app.get('/streets_meet', function(req, res){
     renderAppHtml('', function(page) {
-        res.send(200, page);
+        res.status(200).send(page);
     });
 });
 
@@ -100,7 +100,7 @@ app.get('/story/:storyId', function(req, res){
     try {
         var objectId = ObjectID.createFromHexString(storyId);
     } catch(e){
-        res.send(500, 'Error : please provide a valid storyId');
+        res.status(500).send('Error : please provide a valid storyId');
         return;
     }
 
@@ -111,7 +111,7 @@ app.get('/story/:storyId', function(req, res){
 
             var openGraphTags = generateOpenGraphTags(doc);
             renderAppHtml(openGraphTags, function(page) {
-                res.send(200, page);
+                res.status(200).send(page);
             });
         }
 
@@ -129,7 +129,7 @@ app.get('/api/story/:storyId', function(req,res){
     try{
         var objectId = ObjectID.createFromHexString(storyId);
     }catch(e){
-        res.send(500, 'Error : please provide a valid storyId');
+        res.status(500).send('Error : please provide a valid storyId');
         return;
     }
 
@@ -181,7 +181,7 @@ app.post('/image', function(req,res){
 			})
 			.on('error', function(e){
 				console.log("error",e);
-				res.send(401, e);
+				res.status(401).send(e);
 			});
 	});
 });
@@ -211,7 +211,7 @@ app.post('/api/story', function(req,res){
     col.insert(story, function(err, records){
         if(err){
             console.error('Error adding a story. Error : ', err);
-            res.send(500, 'Error adding a story.')
+            res.status(500).send('Oops, seems like we couldn\'t adding a story.');
         }else{
             console.log('id', records[0]._id);
             res.json(records[0]);
