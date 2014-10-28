@@ -192,7 +192,7 @@ app.get('/api/firstStory', function(req,res){
 	var col = mdb.collection('stories');
 	col.findOne({'_id':FIRST_STORY_MAGIC_ID}, function(err,doc) {
         if(err){
-            console.error('Error find story by storyId : %s. Error : %s.',storyId, err);
+            console.error('Error find story by storyId : %s. Error : %s.',FIRST_STORY_MAGIC_ID, err);
         } else {
             res.send(doc);
         }
