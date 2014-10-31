@@ -1,0 +1,149 @@
+    
+    <header id="img_header" class="intro-header"   style="margin-bottom: 0px;" >
+            <div ng-style="{'background-image': 'url('+story.imageUrl+')'}" style="background-position: center center; background-size: cover;  width:100%;">
+            <div style="background-color: rgba(0,0,0,0.4); width: 100%;  padding-top:2em; padding-bottom:2em; ">
+           <div class="container">
+
+            <div class="row">
+
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 " style="float:left">
+                    <div id="story-title" >
+                    StreetsOf<span id="story-title-bold">TLV</span>
+                    </div>
+
+                </div>
+
+<span style="margin-left: 200px; text-align:none; margin-top: 40px; float:right; margin-top:-35px">
+                        <a href="/add_story#">
+             	    	<button class="story-button" style="background-color: #ffffff; color: #d429ff; width:186px; height: 51px; font-size: 11pt;">
+                            <img src="/public/css/img/pencil_icon.png" style="height:15px; width:15px; ">
+					        What's your story
+                        </button>
+                         </a>
+
+                    </span>
+
+
+                    <div class="site-heading" style="padding: 40px 0; text-align:center;">
+                        <h1 id="story-heading">{{story.location}}</h1>
+                        <!--<hr class="small">-->
+                        <div id="story-subtitle" class="thin" ng-if="story.authorName">A story by {{story.authorName}}</div>
+                        <div id="story-subtitle" class="thin" ng-if="!story.authorName">A story by an anonymous author</div>
+
+                        <div id="story-map" style="margin-top: 40px">
+                            <a href="#">
+                                <img src="/public/css/img/map.png" style="width:24px; height: 35px"/>
+
+                                <div class="thin roboto" style="font-size: 11px">
+                                    Explore Map
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+            </div>
+        </div>
+        <!-- -->
+        
+
+
+
+</div>
+    </header>
+</div>
+        <div class="container">
+            <div class="row" style="background-color: #ffffff; text-align: center;">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-2" style="line-height: 54px; ">
+                    <span style=" float:left"><a ng-click="toPreviousStory()"><img class="pointer" src="/public/css/img/arrow-left.png" style="width: 15px"/></a>
+                    </span>
+                        <span  id="story-create">Written on {{story.storyCreateDate | date:'MMMM dd, yyyy'}}</span>
+                    <span  style=" float:right"><a ng-click="toNextStory()" ><img class="pointer" src="/public/css/img/arrow-right.png" style="width: 15px"/></a>
+                        </span>
+                </div>
+            </div>
+        </div>
+
+<div style="background-color: #fafafa; width: 100%;">
+    <!-- Main Content -->
+    <div class="container" >
+
+        <div class="row" >
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-2">
+             	<!--<div>-->
+             		<!--<i class="fa fa-map-marker"></i><a href="#">{{ story.location }}</a>-->
+             	<!--</div>-->
+             	<div id="story-text"><span style='font-weight: bold'>{{ story.text|stFirstWord}}</span> <span>{{story.text|stAllButFirstWord}}</span>
+             	</div>
+             	
+
+            </div>   
+            
+            <!--<div class="col-md-4">-->
+            	<!--<div><i class="fa fa-user"></i>{{ story.authorName }}</div>-->
+            	<!--<div><i class="fa fa-calendar"></i>{{ story.storyDate }}</div>-->
+            	<!--<div><input id="txt_tags" type="text" value="{{ story.tags }}" disabled=disabled data-role="tagsinput"/></div>-->
+            <!--</div>-->
+        </div>
+
+        <div class="row" style="margin-top:80px;">
+            <div class="col-md-8 col-md-offset-2" >
+                <div style="float:left">
+                <a ng-click="launchFacebookShare()"><img class="share-button" src="/public/css/img/fb_button_off.png" /></a>
+                <a style="margin-left: 10px" ng-click="launchTwitterShare()"><img class="share-button" src="/public/css/img/tw_button_off.png"/></a>
+                    </div>
+                <form id="story-form" style='display: none'>
+                    <input id="story-email" type="text" placeholder="Your Email"/>
+                    <button id="story-submit">Send me new stories</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 42px;">
+            <div class="col-md-8 col-md-offset-2">
+                <hr>
+            </div>
+        </div>
+
+
+
+    </div>
+
+</div>
+    <!-- Footer -->
+<footer style="background-color: #fafafa; padding: 20px">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-2">
+                    <div id="story-yours">
+                        {{ call_to_action }}
+                    </div>
+
+
+                    <div style="text-align: center; margin-top: 50px">
+             	    	<button class="story-button" >
+                            <a href="/add_story" style="color: white !important; text-decoration: none;">
+					        Tell your story
+                                </a>
+                        </button>
+                        <br/>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 115px">
+
+					        <a href="/terms" style='display: none'>Terms of Service </a>
+                            <span style='display: none'>&#8226;</span>
+                            <!--<a href="#">Privacy Policy</a>-->
+                            <a href="/about">About StreetsOfTLV</a>
+
+                        <br/>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+        </footer>

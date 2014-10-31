@@ -1,0 +1,120 @@
+
+
+#story-title-bold {
+    font-family:'Open Sans',sans-serif;font-size:20px;color:#ffffff;
+    font-weight: bold;
+    letter-spacing: 0px;
+}
+
+#story-title {
+    font-family:'Roboto',sans-serif;font-size:20px;color:#ffffff;
+    text-align: center;
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-top: 40px;
+
+}
+
+
+div#story-text {
+    font-family:'Open Sans',sans-serif;font-size:12pt;color:#404040;
+    margin-top: 20px;
+    text-align: justify;
+    line-height: 23pt;
+    margin-top: 53px;
+    white-space: pre-line;
+}
+
+div.site-heading h1#story-heading {
+    font-family:'Open Sans',sans-serif;font-size:49px;color:#ffffff;
+    font-weight: 700;
+    text-shadow: 2px 2px 3px #404040;
+    text-align: center;
+    margin-top: 70px;
+}
+
+div.site-heading #story-subtitle {
+    font-family:'Open Sans',sans-serif;font-size:15px;color:#ffffff;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-align: center;
+
+}
+
+.thin {
+    font-weight: 100;
+    letter-spacing: 1px;
+    font-size: 10px;
+
+}
+.roboto {
+    font-family:'Roboto',sans-serif;color:#ffffff;
+    margin-top: 5px;
+}
+
+.pointer {
+    cursor: pointer !important;
+}
+
+div#story-map a img {
+    cursor: pointer;
+}
+
+#story-create {
+    text-align: center;
+    font-family:'Open Sans',sans-serif;font-size: 11pt; color:#000000;
+}
+
+#story-yours {
+
+    font-family:'Open Sans',sans-serif;font-size:31pt;color:#000000;
+    font-weight: 300;
+    text-align: center;
+}
+
+.story-button {
+    background-color: #d429ff;
+    font-family:'Open Sans',sans-serif;font-size:13pt;color:#ffffff;
+    font-weight: 300;
+    text-align: center;
+    width: 200px;
+    height: 53px;
+    border: none;
+}
+
+#story-button:hover {
+    background-color: #bf25e5;
+
+}
+
+#story_over {
+	font-size:2em;
+	font-weight: 300;
+	margin-bottom:1em;
+	margin-top:1em;
+}
+
+.share-button {
+    width: 54px;
+    height: 54px;
+    cursor:pointer !important;
+}
+
+#story-email {
+    margin-left: 23px;
+    height:54px;
+    width:227px;
+    padding-left: 10px;
+    font-family:'Open Sans',sans-serif;font-size:11pt;color:#aaaaaa;font-style:italic;
+
+}
+
+#story-submit {
+    height:54px;
+    width:227px;
+    background-color: #3cb878;
+    font-family:'Open Sans',sans-serif;font-size:11pt;color:#ffffff;
+    border-width:0px;
+    margin-left: 23px;
+}
+
