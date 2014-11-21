@@ -1,0 +1,187 @@
+<style type="text/css">
+    @import url(http://fonts.googleapis.com/earlyaccess/opensanshebrew.css);
+
+    html body {
+    	background-color: #EEEEEE;
+    }
+
+    html, body, input, span, div{
+    	font-family: 'Open Sans Hebrew', serif;
+    }
+
+
+
+    .pac-icon {
+    	background-image: none;
+    }
+
+    .site-heading input, .subheading{
+    	color:black;
+    }
+
+    h1 {
+    	font-size:50px;
+    }
+
+    .editable-title{
+    	background-color: rgba(1,1,1,0);
+    	border:0px solid red;
+    }
+
+    .black-overlay{
+    	background-color:rgba(0,0,0,0.4);
+    }
+
+    .date-field{
+    	background-color:white;
+    	text-align:center;
+    	padding:1em;
+    }
+
+    #btn_upload_photo_container{
+    	text-align:center;
+    	padding-bottom:2em;
+    }
+
+    #lbl_your_story{
+    	color: #D119ff;
+    }
+
+    .btn-upload-photo {
+    	background-color: rgba(0,0,0,0.5);
+    	border:2px solid white;
+    	display:none;
+    }
+
+    .btn-upload-photo:hover, .btn-upload-photo:focus {
+    	border:2px solid white;
+    }
+    #txt_your_story {
+    	background-color:rgba(0,0,0,0);
+    	border-width:0px;
+    	line-height:1.5em;
+
+    }
+    #txt_your_story:focus,input:focus,button:focus {
+    	border: none;
+    	outline:none;
+    }
+
+    #publish_button_container {
+    	text-align:center;
+    }
+
+    #btn_publish {
+    	margin-top:3em;
+    }
+    </style>
+
+    <!-- Navigation
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+		<!--
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="about.html">About</a>
+                    </li>
+                    <li>
+                        <a href="post.html">Sample Post</a>
+                    </li>
+                    <li>
+                        <a href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header id="img_header" class="intro-header">
+    	<div id="black-overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+                    <div class="site-heading">
+		                <h1><input id="txt_geocode_address" type="text" class="editable-title" value="Street name?" style="text-align:center;"/></h1>
+		                <span class="subheading" id="txt_author_name">A story by <span id="txt_your_name" class='editable-title' contenteditable>[Enter your name]</span></span>
+                    </div>
+                  <div id="btn_upload_photo_container">
+
+		                	<button type="button" id="btn-upload-photo" class="btn btn-default btn-lg btn-upload-photo">Upload your photo</button>
+		                	<iframe name="postframe" id="postframe" class="hidden" src="about:none" ></iframe>
+		                	  <form action="/image" enctype="multipart/form-data" method="post" id="frm_fileupload" target="postframe">
+		                		<input type="file" id="btn_upload" name="upload" style="visibility: hidden; width: 1px; height: 1px" />
+		                	</form>
+
+
+		  </div>
+
+             </div>
+            </div>
+        </div>
+	      	<div class="date-field">Written on <span id="actual_date_field"></span></div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+        	<div class="col-md-12" style="text-align:center;">
+	        	<button type="button" id="btn_inspire" class="btn btn-default btn-lg" style="display: none;">Inspire me</button>
+        	</div>
+
+        	<div class="col-md-12">
+        		<div id="your_story_container" style="text-align:center; display:none;">
+	        		<span id="lbl_your_story">Begin writing your story...</span>
+	        	</div>
+	        	<div id="text_area_container" style="display:none;">
+	        		<div style="width:100%;" id="txt_your_story" contenteditable></div>
+	        	</div>
+
+	        	<div id="publish_button_container">
+	        		<button type="button" id="btn_publish" class="btn btn-default btn-lg" style="display:none;">Publish your story</button>
+	        	</div>
+
+	        	<div id="share_buttons_containers" style="display:none;">
+	        		<div id="story_over">Yeah! your story is live!</div>
+	        		<div>
+			       <div style="float:left">
+				<a><img class="share-button" src="/public/css/img/fb_button_off.png" /></a>
+				<a style="margin-left: 10px"><img class="share-button" src="/public/css/img/tw_button_off.png"/></a>
+				    </div>
+				<form id="story-form">
+				    <input id="story-email" type="text" placeholder="Your Email"/>
+				    <button id="story-submit">Send me new stories</button>
+				</form>
+				</div>
+				<div>
+        	</div>
+	</div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+            </div>
+        </div>
+    </footer>
