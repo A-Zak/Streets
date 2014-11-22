@@ -1,0 +1,25 @@
+{
+  "apiVersion": "v1beta1",
+  "kind": "ReplicationController",
+  "id": "monogo-controller",
+  "desiredState": {
+    "replicas": 1,
+    "replicaSelector": { "name": "mongo", "role": "master" },
+    "podTemplate": {
+      "desiredState": {
+        "manifest": {
+          "version": "v1beta1",
+          "id": "monogo-controller",
+          "containers": [{
+            "name": "mongo-master",
+            "image": "mongo",
+            "ports": [{ "name": "monogo-server", "containerPort": 27017 }]
+          }]
+        }
+      },
+      "labels": { "name": "mongo", "role": "master" }
+    }
+  },
+  "labels": { "name": "mongo", "role": "master" }
+}
+

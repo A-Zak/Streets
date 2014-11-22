@@ -1,0 +1,9 @@
+{
+  "apiVersion": "v1beta1",
+  "kind": "Service",
+  "id": "streets",
+  "port": 80,
+  "containerPort": 80,
+  "selector": { "name": "streets" },
+  "createExternalLoadBalancer": true
+}

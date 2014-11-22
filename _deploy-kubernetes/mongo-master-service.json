@@ -1,0 +1,9 @@
+{
+  "apiVersion": "v1beta1",
+  "kind": "Service",
+  "id": "mongo-master",
+  "port": 27017,
+  "containerPort": "mongo-server",
+  "selector": { "name": "mongo", "role": "master" },
+  "createExternalLoadBalancer": true
+}

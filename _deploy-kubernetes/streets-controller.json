@@ -1,0 +1,25 @@
+{
+  "apiVersion": "v1beta1",
+  "kind": "ReplicationController",
+  "id": "streets-controller",
+  "desiredState": {
+    "replicas": 3,
+    "replicaSelector": { "name": "streets" },
+    "podTemplate": {
+      "desiredState": {
+        "manifest": {
+          "version": "v1beta1",
+          "id": "streets-controller",
+          "containers": [{
+            "image": "alexzak/streets:1.1.1",
+            "name": "streets",
+            "ports": [{ "name": "http-server", "containerPort": 3000, "hostPort": 80 }]
+          }],
+        }
+      },
+      "labels": { "name": "streets" }
+    },
+  },
+  "labels": { "name": "streets" }
+}
+
