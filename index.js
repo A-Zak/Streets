@@ -18,6 +18,10 @@ var bucket;
 var projectId = 'kiddyup-web-001';
 var bucketName = 'streets';
 
+
+// TODO: need to inform if /gcloud.json isn't there...
+//       without it image uploade crash the server.... /:
+
 // if(process.env.MONGO){
 // 	bucket = gcloud.storage({
 // 		  projectId: projectId,

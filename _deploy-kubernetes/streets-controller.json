@@ -11,7 +11,7 @@
           "version": "v1beta1",
           "id": "streets-controller",
           "containers": [{
-            "image": "alexzak/streets:1.1.1",
+            "image": "alexzak/streets:1.1.2",
             "name": "streets",
             "ports": [{ "name": "http-server", "containerPort": 3000, "hostPort": 80 }]
           }],
