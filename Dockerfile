@@ -11,9 +11,9 @@ COPY . /src
 RUN cd /src; npm install
 
 
-ENV MONGO 10.240.82.169
-ENV PORT 8080
-EXPOSE  8080
+ENV MONGO 10.240.18.30
+ENV PORT 3000
+EXPOSE  3000
 
 # And run the app
 CMD ["node", "/src/index.js"]
@@ -25,7 +25,7 @@ CMD ["node", "/src/index.js"]
 # ADD clone_config_run.sh /web/
 # RUN chmod +x /web/clone_config_run.sh
 # ENV MONGO 146.148.119.150
-# ENV PORT 8080
-# EXPOSE  8080
+# ENV PORT 3000
+# EXPOSE  3000
 
 # CMD ./web/clone_config_run.sh

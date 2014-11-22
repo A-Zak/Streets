@@ -8,7 +8,6 @@ var fs = require('fs');
 var mdb = null;
 var FACEBOOK_APP_ID = '543308622468738';
 
-var mongoIP = process.env.MONGO ? process.env.MONGO : "127.0.0.1";
 var gcloud = require('gcloud');
 var uuid = require('node-uuid');
 var busboy = require('connect-busboy');
@@ -250,15 +249,13 @@ app.get('/loadStories', function(req,res){
 var mongoIP = process.env.MONGO ? process.env.MONGO : "127.0.0.1";
 
 // Force prod IP
-mongoIP = "107.167.178.229";
+// mongoIP = "146.148.6.242";
 
 
+var mongoUrl = 'mongodb://' + mongoIP + ':27017/streets';
+console.log("connecting to mongo:" + mongoUrl);
 
-console.log("connecting to mongo:" + 'mongodb://' + mongoIP + ':27017/streets');
-
-
-
-mongo.connect('mongodb://' + mongoIP + ':27017/streets', function(err, db){
+mongo.connect(mongoUrl, function(err, db){
     
     if (err) throw err;
 
