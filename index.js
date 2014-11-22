@@ -1,4 +1,6 @@
-﻿var express = require('express');
+﻿require('newrelic');
+
+var express = require('express');
 var app = express();
 var mongo = require("mongodb").MongoClient;
 var ObjectID = require('mongodb').ObjectID;
@@ -248,7 +250,7 @@ app.get('/loadStories', function(req,res){
 
 var mongoIP = process.env.MONGO ? process.env.MONGO : "127.0.0.1";
 
-// Force prod IP
+// // Force prod IP
 // mongoIP = "146.148.6.242";
 
 
