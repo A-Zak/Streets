@@ -19,7 +19,7 @@ angular.module('streets')
         initialize();
 
         var geocode_callback = function(coords) {
-                var url = 'url(http://maps.googleapis.com/maps/api/streetview?size=640x640&location='+ coords.lat() + ',' + coords.lng()+'&fov=90&heading=235&pitch=10)';
+                var url = 'url(http://maps.googleapis.com/maps/api/streetview?size=640x640&location='+ coords.lat() + ',' + coords.lng()+'&fov=90&heading=235&pitch=10&key=AIzaSyA64CVzTsr-qOROGsF18Wh2Rl7CdKoXWoI)';
                 $('#img_header').fadeOut(function() {
                     $('#img_header').css('background-image',url);
                     $('#txt_geocode_address').css('color','white');

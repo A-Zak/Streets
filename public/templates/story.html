@@ -50,7 +50,7 @@
 				$('#stam_button').click(function() {
 					var geocode_callback = function(coords) {
 						alert("TO");
-						var url = 'url(http://maps.googleapis.com/maps/api/streetview?size=400x400&location='+ coords.lat() + ',' + coords.lng()+'&fov=90&heading=235&pitch=10)';
+						var url = 'url(http://maps.googleapis.com/maps/api/streetview?size=400x400&location='+ coords.lat() + ',' + coords.lng()+'&fov=90&heading=235&pitch=10&key=&key=AIzaSyA64CVzTsr-qOROGsF18Wh2Rl7CdKoXWoI)';
 						$('#img_header').css('background-image',url);
 					}
 					
