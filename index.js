@@ -15,7 +15,7 @@ var uuid = require('node-uuid');
 var busboy = require('connect-busboy');
 
 var bucket;
-var projectId = 'kiddyup-web-001';
+var projectId = 'streets-city';
 var bucketName = 'streets';
 
 

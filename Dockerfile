@@ -11,7 +11,7 @@ COPY . /src
 RUN cd /src; npm install
 
 
-ENV MONGO 10.240.18.30
+ENV MONGO db
 ENV PORT 3000
 EXPOSE  3000
 
